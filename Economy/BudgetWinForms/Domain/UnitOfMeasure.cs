@@ -12,11 +12,15 @@ namespace BudgetWinForms
 
         public string Name { get; set; }
 
+        public string ShortName { get; set; }
+
         public virtual ICollection<GoodsItem> GoodsItems { get; set; }
 
         public UnitOfMeasure()
         {
             GoodsItems = new HashSet<GoodsItem>();
         }
+
+        public override string ToString() => $"{ Name} ({ShortName})";
     }
 }
