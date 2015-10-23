@@ -30,7 +30,10 @@ namespace BudgetWinForms
             {
                 var unitOfMeasures = db.UnitOfMeasures.ToList();
                 foreach (var unitOfMeasure in unitOfMeasures)
-                    unitOfMeasureListBox.Items.Add(unitOfMeasure);
+                {
+                    var item = new ComplexListBoxItem(unitOfMeasure.Id, unitOfMeasure.Name, unitOfMeasure.ShortName);
+                    unitOfMeasureListBox.Items.Add(item);
+                }
             }
         }
 
@@ -56,7 +59,7 @@ namespace BudgetWinForms
         
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var selectedItem = unitOfMeasureListBox.SelectedItem as UnitOfMeasure;
+            var selectedItem = unitOfMeasureListBox.SelectedItem as ComplexListBoxItem;
             using (var db = new BudgetModel())
             {
                 var renameItem = db.UnitOfMeasures.Find(selectedItem.Id);
@@ -73,7 +76,7 @@ namespace BudgetWinForms
 
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var selectedItem = unitOfMeasureListBox.SelectedItem as UnitOfMeasure;
+            var selectedItem = unitOfMeasureListBox.SelectedItem as ComplexListBoxItem;
             if (selectedItem == null) return;
             using (var db = new BudgetModel())
             {

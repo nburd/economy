@@ -18,7 +18,5 @@ namespace BudgetWinForms
         {
             GoodsItems = new HashSet<GoodsItem>();
         }
-
-        public override string ToString() => Name;
     }
 }

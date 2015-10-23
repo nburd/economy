@@ -30,7 +30,10 @@ namespace BudgetWinForms
             {
                 var sources = db.Sources.ToList();
                 foreach (var source in sources)
-                    sourcesListBox.Items.Add(source);
+                {
+                    var item = new ListBoxItem(source.Id, source.Name);
+                    sourcesListBox.Items.Add(item);
+                }
             }
         }
 
@@ -55,7 +58,7 @@ namespace BudgetWinForms
 
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var selectedItem = sourcesListBox.SelectedItem as Source;
+            var selectedItem = sourcesListBox.SelectedItem as ListBoxItem;
             if (selectedItem == null) return;
             AddItemForm addItemForm = new AddItemForm(selectedItem.Name);
             if (addItemForm.ShowDialog(this) == DialogResult.OK)
@@ -72,7 +75,7 @@ namespace BudgetWinForms
 
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var selectedItem = sourcesListBox.SelectedItem as Source;
+            var selectedItem = sourcesListBox.SelectedItem as ListBoxItem;
             if (selectedItem == null) return;
             using (var db = new BudgetModel())
             {

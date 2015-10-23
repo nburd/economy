@@ -31,7 +31,10 @@ namespace BudgetWinForms
             {
                 var categories = db.Categories.ToList();
                 foreach (var category in categories)
-                    categoriesListBox.Items.Add(category);
+                {
+                    var item = new ListBoxItem(category.Id, category.Name);
+                    categoriesListBox.Items.Add(item);
+                }
             }
         }
 
@@ -56,7 +59,7 @@ namespace BudgetWinForms
 
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var selectedItem = categoriesListBox.SelectedItem as Category;
+            var selectedItem = categoriesListBox.SelectedItem as ListBoxItem;
             if (selectedItem == null) return;
             AddItemForm addItemForm = new AddItemForm(selectedItem.Name);
             if (addItemForm.ShowDialog(this) == DialogResult.OK)
@@ -73,7 +76,7 @@ namespace BudgetWinForms
 
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var selectedItem = categoriesListBox.SelectedItem as Category;
+            var selectedItem = categoriesListBox.SelectedItem as ListBoxItem;
             if (selectedItem == null) return;
             using (var db = new BudgetModel())
             {

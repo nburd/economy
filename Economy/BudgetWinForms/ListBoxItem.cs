@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace BudgetWinForms
 {
-    public class Source
+    public class ListBoxItem
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public virtual ICollection<Purchase> Purchases { get; set; }
-
-        public Source()
+        public ListBoxItem(int id, string name)
         {
-            Purchases = new HashSet<Purchase>();
+            Id = id;
+            Name = name;
         }
+
+        public override string ToString() => Name;
     }
 }
