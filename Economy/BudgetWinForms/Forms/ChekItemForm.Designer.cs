@@ -51,6 +51,9 @@
             // chekItemDataGridView
             // 
             this.chekItemDataGridView.AllowUserToAddRows = false;
+            this.chekItemDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chekItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.chekItemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -60,11 +63,11 @@
             this.Quantity,
             this.Rename,
             this.Remove});
-            this.chekItemDataGridView.Location = new System.Drawing.Point(12, 246);
+            this.chekItemDataGridView.Location = new System.Drawing.Point(2, 262);
             this.chekItemDataGridView.Name = "chekItemDataGridView";
-            this.chekItemDataGridView.Size = new System.Drawing.Size(646, 134);
+            this.chekItemDataGridView.Size = new System.Drawing.Size(718, 196);
             this.chekItemDataGridView.TabIndex = 0;
-            this.chekItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.chekItemDataGridView_CellContentClick);
+            this.chekItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.chekItemDataGridViewCellContentClick);
             // 
             // Id
             // 
@@ -116,7 +119,7 @@
             this.chekCategoryComboBox.Name = "chekCategoryComboBox";
             this.chekCategoryComboBox.Size = new System.Drawing.Size(121, 21);
             this.chekCategoryComboBox.TabIndex = 1;
-            this.chekCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.chekCategoryComboBox_SelectedIndexChanged);
+            this.chekCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.chekCategoryComboBoxSelectedIndexChanged);
             // 
             // chekGoodsListBox
             // 
@@ -166,18 +169,19 @@
             this.chekAddButton.TabIndex = 7;
             this.chekAddButton.Text = "Добавить";
             this.chekAddButton.UseVisualStyleBackColor = true;
-            this.chekAddButton.Click += new System.EventHandler(this.chekAddButton_Click);
+            this.chekAddButton.Click += new System.EventHandler(this.chekAddButtonClick);
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(513, 462);
+            this.button1.Location = new System.Drawing.Point(594, 464);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
             this.button1.Text = "Сохранить";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.SaveClick);
             // 
             // saveButton
             // 
@@ -188,7 +192,7 @@
             this.saveButton.TabIndex = 9;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.saveButtonClick);
             // 
             // ChekItemForm
             // 
@@ -205,8 +209,10 @@
             this.Controls.Add(this.chekGoodsListBox);
             this.Controls.Add(this.chekCategoryComboBox);
             this.Controls.Add(this.chekItemDataGridView);
+            this.MinimumSize = new System.Drawing.Size(100, 100);
             this.Name = "ChekItemForm";
-            this.Text = "CheckItemForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Заполнение покупки";
             ((System.ComponentModel.ISupportInitialize)(this.chekItemDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

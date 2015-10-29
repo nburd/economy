@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.unitOfMeasureListBox = new System.Windows.Forms.ListBox();
-            this.unitOfMeasureAddButton = new System.Windows.Forms.Button();
             this.unitOfMeasureContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unitOfMeasureAddButton = new System.Windows.Forms.Button();
             this.unitOfMeasureContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,28 @@
             this.unitOfMeasureListBox.Size = new System.Drawing.Size(188, 173);
             this.unitOfMeasureListBox.TabIndex = 0;
             // 
+            // unitOfMeasureContextMenuStrip
+            // 
+            this.unitOfMeasureContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.изменитьToolStripMenuItem,
+            this.удалитьToolStripMenuItem});
+            this.unitOfMeasureContextMenuStrip.Name = "unitOfMeasureContextMenuStrip";
+            this.unitOfMeasureContextMenuStrip.Size = new System.Drawing.Size(129, 48);
+            // 
+            // изменитьToolStripMenuItem
+            // 
+            this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.изменитьToolStripMenuItem.Text = "Изменить";
+            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.RenameToolStripMenuItemClick);
+            // 
+            // удалитьToolStripMenuItem
+            // 
+            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.удалитьToolStripMenuItem.Text = "Удалить";
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItemClick);
+            // 
             // unitOfMeasureAddButton
             // 
             this.unitOfMeasureAddButton.Location = new System.Drawing.Point(13, 193);
@@ -54,29 +76,7 @@
             this.unitOfMeasureAddButton.TabIndex = 1;
             this.unitOfMeasureAddButton.Text = "Добавить";
             this.unitOfMeasureAddButton.UseVisualStyleBackColor = true;
-            this.unitOfMeasureAddButton.Click += new System.EventHandler(this.unitOfMeasureAddButton_Click);
-            // 
-            // unitOfMeasureContextMenuStrip
-            // 
-            this.unitOfMeasureContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.изменитьToolStripMenuItem,
-            this.удалитьToolStripMenuItem});
-            this.unitOfMeasureContextMenuStrip.Name = "unitOfMeasureContextMenuStrip";
-            this.unitOfMeasureContextMenuStrip.Size = new System.Drawing.Size(153, 70);
-            // 
-            // изменитьToolStripMenuItem
-            // 
-            this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.изменитьToolStripMenuItem.Text = "Изменить";
-            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
-            // 
-            // удалитьToolStripMenuItem
-            // 
-            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.удалитьToolStripMenuItem.Text = "Удалить";
-            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
+            this.unitOfMeasureAddButton.Click += new System.EventHandler(this.unitOfMeasureAddButtonClick);
             // 
             // UnitOfMeasureForm
             // 
@@ -86,7 +86,8 @@
             this.Controls.Add(this.unitOfMeasureAddButton);
             this.Controls.Add(this.unitOfMeasureListBox);
             this.Name = "UnitOfMeasureForm";
-            this.Text = "UnitOfMeasureForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Единицы измерения";
             this.unitOfMeasureContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -72,7 +72,15 @@ namespace BudgetWinForms
                 var renameButton = new DataGridViewButtonCell();
                 var removeButton = new DataGridViewButtonCell();
                 foreach (var chekItem in chekItems)
-                    chekItemDataGridView.Rows.Add(chekItem.Id, chekItem.GoodsItem.Category.Name, chekItem.GoodsItem.Name, chekItem.Price, chekItem.Quantity, renameButton, removeButton);
+                    chekItemDataGridView.Rows.Add(
+                        chekItem.Id, 
+                        chekItem.GoodsItem.Category.Name, 
+                        chekItem.GoodsItem.Name, 
+                        chekItem.Price, 
+                        chekItem.Quantity, 
+                        renameButton, 
+                        removeButton
+                        );
             }
         }
 
@@ -83,8 +91,8 @@ namespace BudgetWinForms
                 var chekItem = new ChekItem();                
                 var selectedGoods = chekGoodsListBox.SelectedItem as ListBoxItem;
                 chekItem.GoodsItem = db.Goods.Find(selectedGoods.Id);
-                chekItem.Price = double.Parse(chekPriceTextBox.Text);
-                chekItem.Quantity = double.Parse(chekQuantityTextBox.Text);
+                chekItem.Price = double.Parse(chekPriceTextBox.Text.Replace(",", ".").Replace(".", ","));
+                chekItem.Quantity = double.Parse(chekQuantityTextBox.Text.Replace(",", ".").Replace(".", ","));
                 chekItem.Purchase = db.Purchases.Find(IdPurchase);
                 db.ChekItems.Add(chekItem);
                 db.SaveChanges();
@@ -93,21 +101,52 @@ namespace BudgetWinForms
 
         private void RenameChekItem(int idItem)
         {
+            double res;
+            if (chekCategoryComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите категорию");
+                return;
+            }
+            if (chekGoodsListBox.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите товар");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(chekPriceTextBox.Text))
+            {
+                MessageBox.Show("Введите цену");
+                return;
+            }
+            else if (!double.TryParse(chekPriceTextBox.Text.Replace(",", ".").Replace(".", ","), out res))
+            {
+                MessageBox.Show("Введите корректную цену");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(chekQuantityTextBox.Text))
+            {
+                MessageBox.Show("Введите количество");
+                return;
+            }
+            else if (!double.TryParse(chekQuantityTextBox.Text.Replace(",", ".").Replace(".", ","), out res))
+            {
+                MessageBox.Show("Введите корректное количество");
+                return;
+            }
             using (var db = new BudgetModel())
             {
                 var chekItem = db.ChekItems.Find(idItem);
                 var selectedGoods = chekGoodsListBox.SelectedItem as ListBoxItem;
                 chekItem.GoodsItem = db.Goods.Find(selectedGoods.Id);
-                chekItem.Price = double.Parse(chekPriceTextBox.Text);
-                chekItem.Quantity = double.Parse(chekQuantityTextBox.Text);
+                chekItem.Price = double.Parse(chekPriceTextBox.Text.Replace(",", ".").Replace(".", ","));
+                chekItem.Quantity = double.Parse(chekQuantityTextBox.Text.Replace(",", ".").Replace(".", ","));
                 db.SaveChanges();
             }
         }
-
+       
         #endregion
         #region Events Handlers
 
-        private void chekCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e) => UpdateListBox();
+        private void chekCategoryComboBoxSelectedIndexChanged(object sender, EventArgs e) => UpdateListBox();
         
         private void ClearForm()
         {
@@ -118,23 +157,66 @@ namespace BudgetWinForms
             UpdateComboBoxCategory();
         }
 
-        private void chekAddButton_Click(object sender, EventArgs e)
+        private void chekAddButtonClick(object sender, EventArgs e)
         {
+            double res;
+            if (chekCategoryComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите категорию");
+                return;
+            }
+            if (chekGoodsListBox.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите товар");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(chekPriceTextBox.Text))
+            {
+                MessageBox.Show("Введите цену");
+                return;
+            }
+            else if (!double.TryParse(chekPriceTextBox.Text.Replace(",", ".").Replace(".", ","), out res))
+            {
+                MessageBox.Show("Введите корректную цену");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(chekQuantityTextBox.Text))
+            {
+                MessageBox.Show("Введите количество");
+                return;
+            }
+            else if (!double.TryParse(chekQuantityTextBox.Text.Replace(",", ".").Replace(".", ","), out res))
+            {
+                MessageBox.Show("Введите корректное количество");
+                return;
+            }
             CreateChekItem();
             UpdateDataGrid();
             ClearForm();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SaveClick(object sender, EventArgs e)
         {
-            Close();
+            using (var db = new BudgetModel())
+            {
+                var chekItems = db.Purchases.Find(IdPurchase).ChekItems.ToList();
+                if (chekItems.Count != 0) Close();
+                else
+                {
+                    var purchase = db.Purchases.Find(IdPurchase);
+                    db.Purchases.Remove(purchase);
+                    db.SaveChanges();
+                }
+            }
         }
 
-        private void chekItemDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void chekItemDataGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == 5)
+            if (e.RowIndex == -1) return;
+            if (e.ColumnIndex == 5)
             {
                 saveButton.Enabled = true;
+                chekAddButton.Enabled = false;
                 IdChekItem = (int)(chekItemDataGridView[0, e.RowIndex].Value);
                 using (var db = new BudgetModel())
                 {
@@ -148,18 +230,23 @@ namespace BudgetWinForms
             }
             else if (e.ColumnIndex == 6)
             {
-                var IdItem = (int)(chekItemDataGridView[0, e.RowIndex].Value);
-                using (var db = new BudgetModel())
+                var res = MessageBox.Show("Удалить?", "Удаление элемента", MessageBoxButtons.YesNo);
+                if (res == DialogResult.No) return;
+                else
                 {
-                    var removeItem = db.ChekItems.Find(IdItem);
-                    db.ChekItems.Remove(removeItem);
-                    db.SaveChanges();
+                    var IdItem = (int)(chekItemDataGridView[0, e.RowIndex].Value);
+                    using (var db = new BudgetModel())
+                    {
+                        var removeItem = db.ChekItems.Find(IdItem);
+                        db.ChekItems.Remove(removeItem);
+                        db.SaveChanges();
+                    }
                 }
             }
             UpdateDataGrid();
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void saveButtonClick(object sender, EventArgs e)
         {
             RenameChekItem(IdChekItem);
             UpdateDataGrid();

@@ -41,7 +41,7 @@
             this.addGoodsCategoryComboBox.Name = "addGoodsCategoryComboBox";
             this.addGoodsCategoryComboBox.Size = new System.Drawing.Size(121, 21);
             this.addGoodsCategoryComboBox.TabIndex = 0;
-            this.addGoodsCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.addGoodsCategoryComboBox_SelectedIndexChanged);
+            this.addGoodsCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.addGoodsCategoryComboBoxSelectedIndexChanged);
             // 
             // addGoodsUnitOfMeasureComboBox
             // 
@@ -50,7 +50,7 @@
             this.addGoodsUnitOfMeasureComboBox.Name = "addGoodsUnitOfMeasureComboBox";
             this.addGoodsUnitOfMeasureComboBox.Size = new System.Drawing.Size(121, 21);
             this.addGoodsUnitOfMeasureComboBox.TabIndex = 1;
-            this.addGoodsUnitOfMeasureComboBox.SelectedIndexChanged += new System.EventHandler(this.AddGoodsUnitOfMeasureComboBox_SelectedIndexChanged);
+            this.addGoodsUnitOfMeasureComboBox.SelectedIndexChanged += new System.EventHandler(this.AddGoodsUnitOfMeasureComboBoxSelectedIndexChanged);
             // 
             // addGoodsItemTextBox
             // 
@@ -61,17 +61,17 @@
             // 
             // addGoodsItemButton
             // 
-            this.addGoodsItemButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.addGoodsItemButton.Location = new System.Drawing.Point(58, 108);
             this.addGoodsItemButton.Name = "addGoodsItemButton";
             this.addGoodsItemButton.Size = new System.Drawing.Size(75, 23);
             this.addGoodsItemButton.TabIndex = 3;
             this.addGoodsItemButton.Text = "Ok";
             this.addGoodsItemButton.UseVisualStyleBackColor = true;
-            this.addGoodsItemButton.Click += new System.EventHandler(this.addGoodsItemButton_Click);
+            this.addGoodsItemButton.Click += new System.EventHandler(this.addGoodsItemButtonClick);
             // 
             // AddGoodsItemForm
             // 
+            this.AcceptButton = this.addGoodsItemButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
@@ -80,7 +80,8 @@
             this.Controls.Add(this.addGoodsUnitOfMeasureComboBox);
             this.Controls.Add(this.addGoodsCategoryComboBox);
             this.Name = "AddGoodsItemForm";
-            this.Text = "AddPurchaseForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Добавление товара";
             this.ResumeLayout(false);
             this.PerformLayout();
 

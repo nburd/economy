@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.categoriesListBox = new System.Windows.Forms.ListBox();
-            this.categoryAddButton = new System.Windows.Forms.Button();
             this.categoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.categoryAddButton = new System.Windows.Forms.Button();
             this.categoryContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,28 @@
             this.categoriesListBox.Size = new System.Drawing.Size(177, 173);
             this.categoriesListBox.TabIndex = 0;
             // 
+            // categoryContextMenuStrip
+            // 
+            this.categoryContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.изменитьToolStripMenuItem,
+            this.удалитьToolStripMenuItem});
+            this.categoryContextMenuStrip.Name = "categoryContextMenuStrip";
+            this.categoryContextMenuStrip.Size = new System.Drawing.Size(129, 48);
+            // 
+            // изменитьToolStripMenuItem
+            // 
+            this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.изменитьToolStripMenuItem.Text = "Изменить";
+            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.RenameToolStripMenuItemClick);
+            // 
+            // удалитьToolStripMenuItem
+            // 
+            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.удалитьToolStripMenuItem.Text = "Удалить";
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.RemoveToolStripMenuItemClick);
+            // 
             // categoryAddButton
             // 
             this.categoryAddButton.Location = new System.Drawing.Point(13, 202);
@@ -54,29 +76,7 @@
             this.categoryAddButton.TabIndex = 1;
             this.categoryAddButton.Text = "Добавить";
             this.categoryAddButton.UseVisualStyleBackColor = true;
-            this.categoryAddButton.Click += new System.EventHandler(this.categoryAddButton_Click);
-            // 
-            // categoryContextMenuStrip
-            // 
-            this.categoryContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.изменитьToolStripMenuItem,
-            this.удалитьToolStripMenuItem});
-            this.categoryContextMenuStrip.Name = "categoryContextMenuStrip";
-            this.categoryContextMenuStrip.Size = new System.Drawing.Size(153, 70);
-            // 
-            // изменитьToolStripMenuItem
-            // 
-            this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.изменитьToolStripMenuItem.Text = "Изменить";
-            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
-            // 
-            // удалитьToolStripMenuItem
-            // 
-            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.удалитьToolStripMenuItem.Text = "Удалить";
-            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
+            this.categoryAddButton.Click += new System.EventHandler(this.categoryAddButtonClick);
             // 
             // CategoryForm
             // 
@@ -86,6 +86,7 @@
             this.Controls.Add(this.categoryAddButton);
             this.Controls.Add(this.categoriesListBox);
             this.Name = "CategoryForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Категории";
             this.categoryContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -22,5 +22,36 @@ namespace BudgetWinForms
         public virtual DbSet<Purchase> Purchases { get; set; }
 
         public virtual DbSet<ChekItem> ChekItems { get; set; }
+
+        #region Fluent API
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+           
+            modelBuilder.Entity<Category>()
+                .HasMany(x => x.GoodsItems)
+                .WithRequired(x => x.Category)
+                .WillCascadeOnDelete(true);
+            modelBuilder.Entity<UnitOfMeasure>()
+                .HasMany(x => x.GoodsItems)
+                .WithRequired(x => x.UnitOfMeasure)
+                .WillCascadeOnDelete(true);
+            modelBuilder.Entity<Source>()
+                .HasMany(x => x.Purchases)
+                .WithRequired(x => x.Source)
+                .WillCascadeOnDelete(true);
+            modelBuilder.Entity<GoodsItem>()
+               .HasMany(x => x.ChekItems)
+               .WithRequired(x => x.GoodsItem)
+               .WillCascadeOnDelete(true);
+            modelBuilder.Entity<Purchase>()
+                .HasMany(x => x.ChekItems)
+                .WithRequired(x => x.Purchase)
+                .WillCascadeOnDelete(true);
+
+        }
+
+        #endregion
     }
 }

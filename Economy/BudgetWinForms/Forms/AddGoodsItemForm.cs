@@ -26,14 +26,21 @@ namespace BudgetWinForms
             FillForm();
         }
 
+        public AddGoodsItemForm(ListBoxItem category)
+        {
+            InitializeComponent();
+            FillForm();
+            addGoodsCategoryComboBox.SelectedIndex = addGoodsCategoryComboBox.FindString(category.Name);
+        }
+
         public AddGoodsItemForm(ListBoxItem category, UnitOfMeasure unitOfMeasure, string value)
         {
             InitializeComponent();
             FillForm();
-            addGoodsCategoryComboBox.SelectedIndex = addGoodsCategoryComboBox.FindString(category.Name);                
+            addGoodsCategoryComboBox.SelectedIndex = addGoodsCategoryComboBox.FindString(category.Name);
             addGoodsUnitOfMeasureComboBox.SelectedIndex = addGoodsUnitOfMeasureComboBox.FindString(unitOfMeasure.Name);
             addGoodsItemTextBox.Text = value;
-            
+
         }
 
         #endregion
@@ -61,11 +68,21 @@ namespace BudgetWinForms
         #endregion
         #region Events Handlers
 
-        private void addGoodsItemButton_Click(object sender, EventArgs e) => Value = addGoodsItemTextBox.Text;
+        private void addGoodsItemButtonClick(object sender, EventArgs e)
+        {
+            Value = addGoodsItemTextBox.Text;
+            if (string.IsNullOrWhiteSpace(Value))
+                MessageBox.Show("Введите название");
+            else if (addGoodsCategoryComboBox.SelectedItem == null) MessageBox.Show("Выберите категорию");
+            else if (addGoodsUnitOfMeasureComboBox.SelectedItem == null) MessageBox.Show("Выберите ед.измерения");
+            else Close();
+        }
 
-        private void addGoodsCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e) => SelectedCategory = addGoodsCategoryComboBox.SelectedItem as ListBoxItem;
+        private void addGoodsCategoryComboBoxSelectedIndexChanged(object sender, EventArgs e) => 
+            SelectedCategory = addGoodsCategoryComboBox.SelectedItem as ListBoxItem;
 
-        private void AddGoodsUnitOfMeasureComboBox_SelectedIndexChanged(object sender, EventArgs e) => SelectedUnitOfMeasure = addGoodsUnitOfMeasureComboBox.SelectedItem as ComplexListBoxItem;
+        private void AddGoodsUnitOfMeasureComboBoxSelectedIndexChanged(object sender, EventArgs e) => 
+            SelectedUnitOfMeasure = addGoodsUnitOfMeasureComboBox.SelectedItem as ComplexListBoxItem;
 
         #endregion
     }

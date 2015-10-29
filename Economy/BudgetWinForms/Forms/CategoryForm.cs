@@ -12,7 +12,6 @@ namespace BudgetWinForms
 {
     public partial class CategoryForm : Form
     {
-
         #region Constructors
 
         public CategoryForm()
@@ -41,7 +40,7 @@ namespace BudgetWinForms
         #endregion
         #region Events Handlers
 
-        private void categoryAddButton_Click(object sender, EventArgs e)
+        private void categoryAddButtonClick(object sender, EventArgs e)
         {
             AddItemForm addItemForm = new AddItemForm();
             if(addItemForm.ShowDialog(this) == DialogResult.OK)
@@ -49,15 +48,19 @@ namespace BudgetWinForms
                 using (var db = new BudgetModel())
                 {
                     var category = new Category();
-                    category.Name = addItemForm.Value;
-                    db.Categories.Add(category);
-                    db.SaveChanges();
+                    if (string.IsNullOrWhiteSpace(addItemForm.Value)) MessageBox.Show("Введите название");
+                    else
+                    {
+                        category.Name = addItemForm.Value;
+                        db.Categories.Add(category);
+                        db.SaveChanges();
+                    }
                 }
                 UpdateListBox();
             }
         }
 
-        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RenameToolStripMenuItemClick(object sender, EventArgs e)
         {
             var selectedItem = categoriesListBox.SelectedItem as ListBoxItem;
             if (selectedItem == null) return;
@@ -67,14 +70,18 @@ namespace BudgetWinForms
                 using (var db = new BudgetModel())
                 {
                     var renameItem = db.Categories.Find(selectedItem.Id);
-                    renameItem.Name = addItemForm.Value;
-                    db.SaveChanges();
+                    if (string.IsNullOrWhiteSpace(addItemForm.Value)) MessageBox.Show("Введите название");
+                    else
+                    {
+                        renameItem.Name = addItemForm.Value;
+                        db.SaveChanges();
+                    }
                 }
                 UpdateListBox();
             }
         }
 
-        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RemoveToolStripMenuItemClick(object sender, EventArgs e)
         {
             var selectedItem = categoriesListBox.SelectedItem as ListBoxItem;
             if (selectedItem == null) return;

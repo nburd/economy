@@ -16,6 +16,7 @@ namespace BudgetWinForms
 
         public virtual ICollection<ChekItem> ChekItems { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Purchase()
         {
             ChekItems = new HashSet<ChekItem>();

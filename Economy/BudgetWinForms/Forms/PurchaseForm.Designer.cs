@@ -42,7 +42,7 @@
             // 
             // purchaseDateTimePicker
             // 
-            this.purchaseDateTimePicker.Location = new System.Drawing.Point(12, 203);
+            this.purchaseDateTimePicker.Location = new System.Drawing.Point(12, 12);
             this.purchaseDateTimePicker.Name = "purchaseDateTimePicker";
             this.purchaseDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.purchaseDateTimePicker.TabIndex = 0;
@@ -50,20 +50,20 @@
             // purchaseComboBox
             // 
             this.purchaseComboBox.FormattingEnabled = true;
-            this.purchaseComboBox.Location = new System.Drawing.Point(12, 242);
+            this.purchaseComboBox.Location = new System.Drawing.Point(231, 11);
             this.purchaseComboBox.Name = "purchaseComboBox";
             this.purchaseComboBox.Size = new System.Drawing.Size(121, 21);
             this.purchaseComboBox.TabIndex = 1;
             // 
             // purchaseButton
             // 
-            this.purchaseButton.Location = new System.Drawing.Point(149, 242);
+            this.purchaseButton.Location = new System.Drawing.Point(155, 38);
             this.purchaseButton.Name = "purchaseButton";
             this.purchaseButton.Size = new System.Drawing.Size(123, 23);
             this.purchaseButton.TabIndex = 2;
             this.purchaseButton.Text = "Внести позиции";
             this.purchaseButton.UseVisualStyleBackColor = true;
-            this.purchaseButton.Click += new System.EventHandler(this.purchaseButton_Click);
+            this.purchaseButton.Click += new System.EventHandler(this.purchaseButtonClick);
             // 
             // purchaseDataGridView
             // 
@@ -75,11 +75,11 @@
             this.Source,
             this.Rename,
             this.Remove});
-            this.purchaseDataGridView.Location = new System.Drawing.Point(12, 13);
+            this.purchaseDataGridView.Location = new System.Drawing.Point(1, 99);
             this.purchaseDataGridView.Name = "purchaseDataGridView";
             this.purchaseDataGridView.Size = new System.Drawing.Size(559, 111);
             this.purchaseDataGridView.TabIndex = 3;
-            this.purchaseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchaseDataGridView_CellContentClick);
+            this.purchaseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchaseDataGridViewCellContentClick);
             // 
             // Id
             // 
@@ -124,13 +124,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(596, 345);
             this.Controls.Add(this.purchaseDataGridView);
             this.Controls.Add(this.purchaseButton);
             this.Controls.Add(this.purchaseComboBox);
             this.Controls.Add(this.purchaseDateTimePicker);
             this.Name = "PurchaseForm";
-            this.Text = "PurchaseForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Покупки";
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDataGridView)).EndInit();
             this.ResumeLayout(false);
 

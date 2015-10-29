@@ -40,47 +40,79 @@ namespace BudgetWinForms
         #endregion
         #region Events Handlers
 
-        private void unitOfMeasureAddButton_Click(object sender, EventArgs e)
+        private void unitOfMeasureAddButtonClick(object sender, EventArgs e)
         {
             using (var db = new BudgetModel())
             {
                 var unitOfMeasure = new UnitOfMeasure();
                 AddItemForm addItemForm = new AddItemForm("Введите полное название");
                 if (addItemForm.ShowDialog(this) == DialogResult.OK)
-                    unitOfMeasure.Name = addItemForm.Value;
-                addItemForm = new AddItemForm("Введите сокращенное название");
-                if (addItemForm.ShowDialog(this) == DialogResult.OK)
-                    unitOfMeasure.ShortName = addItemForm.Value;
-                db.UnitOfMeasures.Add(unitOfMeasure);
-                db.SaveChanges();
+                    if (string.IsNullOrWhiteSpace(addItemForm.Value) 
+                        || addItemForm.Value == "Введите полное название")
+                    {
+                        MessageBox.Show("Введите название");
+                        return;
+                    }
+                    else
+                    {
+                        unitOfMeasure.Name = addItemForm.Value;
+                        addItemForm = new AddItemForm("Введите сокращенное название");
+                        if (addItemForm.ShowDialog(this) == DialogResult.OK)
+                            if (string.IsNullOrWhiteSpace(addItemForm.Value) 
+                                || addItemForm.Value == "Введите сокращенное название")
+                            {
+                                MessageBox.Show("Введите название");
+                                return;
+                            }
+                            else
+                            {
+                                unitOfMeasure.ShortName = addItemForm.Value;
+                                db.UnitOfMeasures.Add(unitOfMeasure);
+                                db.SaveChanges();
+                            }
+                    }
+                UpdateListBox();
             }
-            UpdateListBox();
         }
         
-        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var selectedItem = unitOfMeasureListBox.SelectedItem as ComplexListBoxItem;
-            using (var db = new BudgetModel())
-            {
-                var renameItem = db.UnitOfMeasures.Find(selectedItem.Id);
-                AddItemForm addItemForm = new AddItemForm(selectedItem.Name);
-                if (addItemForm.ShowDialog(this) == DialogResult.OK)
-                    renameItem.Name = addItemForm.Value;
-                addItemForm = new AddItemForm(selectedItem.ShortName);
-                if (addItemForm.ShowDialog(this) == DialogResult.OK)
-                    renameItem.ShortName = addItemForm.Value;
-                db.SaveChanges();
-            }
-            UpdateListBox();
-        }
-
-        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RenameToolStripMenuItemClick(object sender, EventArgs e)
         {
             var selectedItem = unitOfMeasureListBox.SelectedItem as ComplexListBoxItem;
             if (selectedItem == null) return;
             using (var db = new BudgetModel())
             {
-                var removeItem = db.UnitOfMeasures.Find(selectedItem.Id);
+                var renameItem = db.UnitOfMeasures.Find(selectedItem.Id);
+                AddItemForm addItemForm = new AddItemForm(selectedItem.Name);
+                if (addItemForm.ShowDialog(this) == DialogResult.OK)
+                    if (string.IsNullOrWhiteSpace(addItemForm.Value))
+                    {
+                        MessageBox.Show("Введите название");
+                        return;
+                    }
+                    else
+                    {
+                        renameItem.Name = addItemForm.Value;
+                        addItemForm = new AddItemForm(selectedItem.ShortName);
+                        if (addItemForm.ShowDialog(this) == DialogResult.OK)
+                            if (string.IsNullOrWhiteSpace(addItemForm.Value))
+                            {
+                                MessageBox.Show("Введите название");
+                                return;
+                            }
+                        renameItem.ShortName = addItemForm.Value;
+                        db.SaveChanges();
+                    }
+            }
+            UpdateListBox();
+        }
+
+        private void DeleteToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            var selectedItem = unitOfMeasureListBox.SelectedItem as ComplexListBoxItem;
+            if (selectedItem == null) return;
+            using (var db = new BudgetModel())
+            {
+                var removeItem = db.UnitOfMeasures.Find(selectedItem.Id); 
                 db.UnitOfMeasures.Remove(removeItem);
                 db.SaveChanges();
             }

@@ -52,21 +52,21 @@
             this.изменитьToolStripMenuItem,
             this.удалитьToolStripMenuItem});
             this.sourceContextMenuStrip.Name = "sourceContextMenuStrip";
-            this.sourceContextMenuStrip.Size = new System.Drawing.Size(153, 70);
+            this.sourceContextMenuStrip.Size = new System.Drawing.Size(129, 48);
             // 
             // изменитьToolStripMenuItem
             // 
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.изменитьToolStripMenuItem.Text = "Изменить";
-            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
+            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.RenameToolStripMenuItemClick);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
-            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItemClick);
             // 
             // sourceAddButton
             // 
@@ -76,7 +76,7 @@
             this.sourceAddButton.TabIndex = 1;
             this.sourceAddButton.Text = "Добавить";
             this.sourceAddButton.UseVisualStyleBackColor = true;
-            this.sourceAddButton.Click += new System.EventHandler(this.sourceAddButton_Click);
+            this.sourceAddButton.Click += new System.EventHandler(this.sourceAddButtonClick);
             // 
             // SourceForm
             // 
@@ -86,7 +86,8 @@
             this.Controls.Add(this.sourceAddButton);
             this.Controls.Add(this.sourcesListBox);
             this.Name = "SourceForm";
-            this.Text = "SourceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Источники";
             this.sourceContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 

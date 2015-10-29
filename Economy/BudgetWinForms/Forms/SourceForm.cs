@@ -40,7 +40,7 @@ namespace BudgetWinForms
         #endregion
         #region Events Handlers
 
-        private void sourceAddButton_Click(object sender, EventArgs e)
+        private void sourceAddButtonClick(object sender, EventArgs e)
         {
             AddItemForm addItemForm = new AddItemForm();
             if(addItemForm.ShowDialog(this) == DialogResult.OK)
@@ -48,15 +48,19 @@ namespace BudgetWinForms
                 using (var db = new BudgetModel())
                 {
                     var source = new Source();
-                    source.Name = addItemForm.Value;
-                    db.Sources.Add(source);
-                    db.SaveChanges();
+                    if (string.IsNullOrWhiteSpace(addItemForm.Value)) MessageBox.Show("Введите название");
+                    else
+                    {
+                        source.Name = addItemForm.Value;
+                        db.Sources.Add(source);
+                        db.SaveChanges();
+                    }
                 }
                 UpdateListBox();
             }
         }
 
-        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RenameToolStripMenuItemClick(object sender, EventArgs e)
         {
             var selectedItem = sourcesListBox.SelectedItem as ListBoxItem;
             if (selectedItem == null) return;
@@ -66,14 +70,18 @@ namespace BudgetWinForms
                 using (var db = new BudgetModel())
                 {
                     var renameItem = db.Sources.Find(selectedItem.Id);
-                    renameItem.Name = addItemForm.Value;
-                    db.SaveChanges();
+                    if(string.IsNullOrWhiteSpace(addItemForm.Value)) MessageBox.Show("Введите название");
+                    else
+                    {
+                        renameItem.Name = addItemForm.Value;
+                        db.SaveChanges();
+                    }
                 }
                 UpdateListBox();
             }
         }
 
-        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteToolStripMenuItemClick(object sender, EventArgs e)
         {
             var selectedItem = sourcesListBox.SelectedItem as ListBoxItem;
             if (selectedItem == null) return;

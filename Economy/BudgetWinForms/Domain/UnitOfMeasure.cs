@@ -16,6 +16,7 @@ namespace BudgetWinForms
 
         public virtual ICollection<GoodsItem> GoodsItems { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UnitOfMeasure()
         {
             GoodsItems = new HashSet<GoodsItem>();

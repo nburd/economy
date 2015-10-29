@@ -45,7 +45,7 @@
             this.goodsItemComboBox.Name = "goodsItemComboBox";
             this.goodsItemComboBox.Size = new System.Drawing.Size(168, 21);
             this.goodsItemComboBox.TabIndex = 0;
-            this.goodsItemComboBox.SelectedIndexChanged += new System.EventHandler(this.goodsItemComboBox_SelectedIndexChanged);
+            this.goodsItemComboBox.SelectedIndexChanged += new System.EventHandler(this.goodsItemComboBoxSelectedIndexChanged);
             // 
             // goodsItemListBox
             // 
@@ -62,21 +62,21 @@
             this.изменитьToolStripMenuItem,
             this.удалитьToolStripMenuItem});
             this.goodsItemContextMenuStrip.Name = "purchaseContextMenuStrip";
-            this.goodsItemContextMenuStrip.Size = new System.Drawing.Size(153, 70);
+            this.goodsItemContextMenuStrip.Size = new System.Drawing.Size(129, 48);
             // 
             // изменитьToolStripMenuItem
             // 
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.изменитьToolStripMenuItem.Text = "Изменить";
-            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
+            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.RemoveToolStripMenuItemClick);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
-            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItemClick);
             // 
             // goodsItemAddButton
             // 
@@ -86,7 +86,7 @@
             this.goodsItemAddButton.TabIndex = 2;
             this.goodsItemAddButton.Text = "Добавить";
             this.goodsItemAddButton.UseVisualStyleBackColor = true;
-            this.goodsItemAddButton.Click += new System.EventHandler(this.goodsItemAddButton_Click);
+            this.goodsItemAddButton.Click += new System.EventHandler(this.goodsItemAddButtonClick);
             // 
             // GoodsForm
             // 
@@ -97,7 +97,8 @@
             this.Controls.Add(this.goodsItemListBox);
             this.Controls.Add(this.goodsItemComboBox);
             this.Name = "GoodsForm";
-            this.Text = "PurchaseForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Товары";
             this.goodsItemContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 

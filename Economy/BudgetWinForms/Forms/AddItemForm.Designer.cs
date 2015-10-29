@@ -52,13 +52,16 @@
             // 
             // AddItemForm
             // 
+            this.AcceptButton = this.OkButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.addItemTextBox);
+            this.Location = new System.Drawing.Point(850, 500);
             this.Name = "AddItemForm";
-            this.Text = "AddItemForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "Добавление элемента";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -14,6 +14,7 @@ namespace BudgetWinForms
 
         public virtual ICollection<Purchase> Purchases { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Source()
         {
             Purchases = new HashSet<Purchase>();

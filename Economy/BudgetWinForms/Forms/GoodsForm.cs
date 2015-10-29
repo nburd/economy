@@ -29,6 +29,7 @@ namespace BudgetWinForms
             using (var db = new BudgetModel())
             {
                 var selectedCategory = goodsItemComboBox.SelectedItem as ListBoxItem;
+                if (selectedCategory == null) return;
                 var goods = db.Categories.Find(selectedCategory.Id).GoodsItems.ToList();
                 foreach (var goodsItem in goods)
                 {
@@ -54,14 +55,18 @@ namespace BudgetWinForms
         #endregion
         #region Event Handlers
 
-        private void goodsItemAddButton_Click(object sender, EventArgs e)
+        private void goodsItemAddButtonClick(object sender, EventArgs e)
         {
-            AddGoodsItemForm addGoodsItemForm = new AddGoodsItemForm();
             using (var db = new BudgetModel())
             {
-                if(addGoodsItemForm.ShowDialog(this) == DialogResult.OK)
+                var selectedCategory = goodsItemComboBox.SelectedItem as ListBoxItem;
+                AddGoodsItemForm addGoodsItemForm = new AddGoodsItemForm();
+                if (selectedCategory != null) addGoodsItemForm = new AddGoodsItemForm(selectedCategory);
+                addGoodsItemForm.ShowDialog(this);
+                var goods = new GoodsItem();
+                if (string.IsNullOrWhiteSpace(addGoodsItemForm.Value)) return;
+                else
                 {
-                    var goods = new GoodsItem();
                     goods.Name = addGoodsItemForm.Value;
                     goods.Category = db.Categories.Find(addGoodsItemForm.SelectedCategory.Id);
                     goods.UnitOfMeasure = db.UnitOfMeasures.Find(addGoodsItemForm.SelectedUnitOfMeasure.Id);
@@ -72,32 +77,41 @@ namespace BudgetWinForms
             UpdateListBox();
         }
 
-        private void goodsItemComboBox_SelectedIndexChanged(object sender, EventArgs e) => UpdateListBox();
+        private void goodsItemComboBoxSelectedIndexChanged(object sender, EventArgs e) => UpdateListBox();
 
-        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RemoveToolStripMenuItemClick(object sender, EventArgs e)
         {
-            using (var db = new BudgetModel()) {
+            using (var db = new BudgetModel())
+            {
                 var selectedItem = goodsItemListBox.SelectedItem as ListBoxItem;
+                if (selectedItem == null) return;
                 var selectedCategory = goodsItemComboBox.SelectedItem as ListBoxItem;
                 var selectedGoodsItem = db.Goods.Find(selectedItem.Id);
                 var selectedUnitOfMeasure = db.UnitOfMeasures.Find(selectedGoodsItem.UnitOfMeasure.Id);
-                AddGoodsItemForm addGoodsForm = new AddGoodsItemForm(selectedCategory, selectedUnitOfMeasure, selectedGoodsItem.Name);
-                if(addGoodsForm.ShowDialog(this) == DialogResult.OK)
+                AddGoodsItemForm addGoodsForm = new AddGoodsItemForm(
+                    selectedCategory, 
+                    selectedUnitOfMeasure, 
+                    selectedGoodsItem.Name
+                    );
+                addGoodsForm.ShowDialog(this);
+                if (string.IsNullOrWhiteSpace(addGoodsForm.Value)) return;
+                else
                 {
                     selectedGoodsItem.Name = addGoodsForm.Value;
                     selectedGoodsItem.Category = db.Categories.Find(addGoodsForm.SelectedCategory.Id);
                     selectedGoodsItem.UnitOfMeasure = db.UnitOfMeasures.Find(addGoodsForm.SelectedUnitOfMeasure.Id);
                     db.SaveChanges();
+                    UpdateListBox();
                 }
-                UpdateListBox();
             }
         }
 
-        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteToolStripMenuItemClick(object sender, EventArgs e)
         {
             using (var db = new BudgetModel())
             {
                 var selectedItem = goodsItemListBox.SelectedItem as ListBoxItem;
+                if (selectedItem == null) return;
                 var removeGoodsItem = db.Goods.Find(selectedItem.Id);
                 db.Goods.Remove(removeGoodsItem);
                 db.SaveChanges();

@@ -25,9 +25,6 @@ namespace BudgetWinForms
             addItemTextBox.Text = str;
         }
 
-        private void OkButton_Click(object sender, EventArgs e)
-        {
-            Value = addItemTextBox.Text;
-        }
+        private void OkButton_Click(object sender, EventArgs e) => Value = addItemTextBox.Text;
     }
 }
