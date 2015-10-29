@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 
 namespace BudgetWinForms
 {
@@ -26,7 +27,7 @@ namespace BudgetWinForms
         private void UpdateListBox()
         {
             sourcesListBox.Items.Clear();
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var sources = db.Sources.ToList();
                 foreach (var source in sources)
@@ -45,7 +46,7 @@ namespace BudgetWinForms
             AddItemForm addItemForm = new AddItemForm();
             if(addItemForm.ShowDialog(this) == DialogResult.OK)
             {
-                using (var db = new BudgetModel())
+                using (var db = new Model.BudgetModel())
                 {
                     var source = new Source();
                     if (string.IsNullOrWhiteSpace(addItemForm.Value)) MessageBox.Show("Введите название");
@@ -53,7 +54,15 @@ namespace BudgetWinForms
                     {
                         source.Name = addItemForm.Value;
                         db.Sources.Add(source);
-                        db.SaveChanges();
+                        try
+                        {
+                            db.SaveChanges();
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        
                     }
                 }
                 UpdateListBox();
@@ -67,7 +76,7 @@ namespace BudgetWinForms
             AddItemForm addItemForm = new AddItemForm(selectedItem.Name);
             if (addItemForm.ShowDialog(this) == DialogResult.OK)
             {
-                using (var db = new BudgetModel())
+                using (var db = new Model.BudgetModel())
                 {
                     var renameItem = db.Sources.Find(selectedItem.Id);
                     if(string.IsNullOrWhiteSpace(addItemForm.Value)) MessageBox.Show("Введите название");
@@ -83,13 +92,18 @@ namespace BudgetWinForms
 
         private void DeleteToolStripMenuItemClick(object sender, EventArgs e)
         {
-            var selectedItem = sourcesListBox.SelectedItem as ListBoxItem;
-            if (selectedItem == null) return;
-            using (var db = new BudgetModel())
+            var res = MessageBox.Show("Удалить?", "Удаление элемента", MessageBoxButtons.YesNo);
+            if (res == DialogResult.No) return;
+            else
             {
-                var removeItem = db.Sources.Find(selectedItem.Id);
-                db.Sources.Remove(removeItem);
-                db.SaveChanges();
+                var selectedItem = sourcesListBox.SelectedItem as ListBoxItem;
+                if (selectedItem == null) return;
+                using (var db = new Model.BudgetModel())
+                {
+                    var removeItem = db.Sources.Find(selectedItem.Id);
+                    db.Sources.Remove(removeItem);
+                    db.SaveChanges();
+                }
             }
             UpdateListBox();
         }

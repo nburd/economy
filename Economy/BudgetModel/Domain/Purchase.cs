@@ -4,22 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudgetWinForms
+namespace Model
 {
-    public class UnitOfMeasure
+    public class Purchase
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public DateTime DateTime { get; set; }
 
-        public string ShortName { get; set; }
+        public virtual Source Source { get; set; }
 
-        public virtual ICollection<GoodsItem> GoodsItems { get; set; }
+        public virtual ICollection<ChekItem> ChekItems { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UnitOfMeasure()
+        public Purchase()
         {
-            GoodsItems = new HashSet<GoodsItem>();
+            ChekItems = new HashSet<ChekItem>();
         }
     }
 }

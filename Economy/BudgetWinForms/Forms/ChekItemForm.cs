@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 
 namespace BudgetWinForms
-{
+{ 
     public partial class ChekItemForm : Form
     {   
         public int IdPurchase { get; set; }
 
-        public int IdChekItem { get; set; }
+        public int IdChekItem { get; set; }    
+    
+         Model.BudgetModel db = new Model.BudgetModel();
             
         #region Constructors
 
@@ -37,66 +40,53 @@ namespace BudgetWinForms
 
         private void UpdateComboBoxCategory()
         {
-            using (var db = new BudgetModel())
+            var categories = db.Categories.ToList();
+            foreach (var category in categories)
             {
-                var categories = db.Categories.ToList();
-                foreach (var category in categories)
-                {
-                    var item = new ListBoxItem(category.Id, category.Name);
-                    chekCategoryComboBox.Items.Add(item);
-                }
+                var item = new ListBoxItem(category.Id, category.Name);
+                chekCategoryComboBox.Items.Add(item);
             }
         }
 
         private void UpdateListBox()
         {
             chekGoodsListBox.Items.Clear();
-            using (var db = new BudgetModel())
+            var selectedCategory = chekCategoryComboBox.SelectedItem as ListBoxItem;
+            var goods = db.Categories.Find(selectedCategory.Id).GoodsItems.ToList();
+            foreach (var goodsItem in goods)
             {
-                var selectedCategory = chekCategoryComboBox.SelectedItem as ListBoxItem;
-                var goods = db.Categories.Find(selectedCategory.Id).GoodsItems.ToList();
-                foreach (var goodsItem in goods)
-                {
-                    var item = new ComplexListBoxItem(goodsItem.Id, goodsItem.Name, goodsItem.UnitOfMeasure.ShortName);
-                    chekGoodsListBox.Items.Add(item);
-                }
+                var item = new ComplexListBoxItem(goodsItem.Id, goodsItem.Name, goodsItem.UnitOfMeasure.ShortName);
+                chekGoodsListBox.Items.Add(item);
             }
         }
 
         private void UpdateDataGrid()
         {
             chekItemDataGridView.Rows.Clear();
-            using (var db = new BudgetModel())
-            {
-                var chekItems = db.Purchases.Find(IdPurchase).ChekItems.ToList();
-                var renameButton = new DataGridViewButtonCell();
-                var removeButton = new DataGridViewButtonCell();
-                foreach (var chekItem in chekItems)
-                    chekItemDataGridView.Rows.Add(
-                        chekItem.Id, 
-                        chekItem.GoodsItem.Category.Name, 
-                        chekItem.GoodsItem.Name, 
-                        chekItem.Price, 
-                        chekItem.Quantity, 
-                        renameButton, 
-                        removeButton
-                        );
-            }
+            var chekItems = db.Purchases.Find(IdPurchase).ChekItems.ToList();
+            var renameButton = new DataGridViewButtonCell();
+            var removeButton = new DataGridViewButtonCell();
+            foreach (var chekItem in chekItems)
+                chekItemDataGridView.Rows.Add(
+                    chekItem.Id, 
+                    chekItem.GoodsItem.Category.Name, 
+                    chekItem.GoodsItem.Name, 
+                    chekItem.Price, 
+                    chekItem.Quantity, 
+                    renameButton, 
+                    removeButton
+                    );
         }
 
         private void CreateChekItem()
         {
-            using (var db = new BudgetModel())
-            {
-                var chekItem = new ChekItem();                
-                var selectedGoods = chekGoodsListBox.SelectedItem as ListBoxItem;
-                chekItem.GoodsItem = db.Goods.Find(selectedGoods.Id);
-                chekItem.Price = double.Parse(chekPriceTextBox.Text.Replace(",", ".").Replace(".", ","));
-                chekItem.Quantity = double.Parse(chekQuantityTextBox.Text.Replace(",", ".").Replace(".", ","));
-                chekItem.Purchase = db.Purchases.Find(IdPurchase);
-                db.ChekItems.Add(chekItem);
-                db.SaveChanges();
-            }
+            var chekItem = new ChekItem();                
+            var selectedGoods = chekGoodsListBox.SelectedItem as ListBoxItem;
+            chekItem.GoodsItem = db.Goods.Find(selectedGoods.Id);
+            chekItem.Price = double.Parse(chekPriceTextBox.Text.Replace(",", ".").Replace(".", ","));
+            chekItem.Quantity = double.Parse(chekQuantityTextBox.Text.Replace(",", ".").Replace(".", ","));
+            chekItem.Purchase = db.Purchases.Find(IdPurchase);
+            db.ChekItems.Add(chekItem);
         }
 
         private void RenameChekItem(int idItem)
@@ -132,15 +122,11 @@ namespace BudgetWinForms
                 MessageBox.Show("Введите корректное количество");
                 return;
             }
-            using (var db = new BudgetModel())
-            {
-                var chekItem = db.ChekItems.Find(idItem);
-                var selectedGoods = chekGoodsListBox.SelectedItem as ListBoxItem;
-                chekItem.GoodsItem = db.Goods.Find(selectedGoods.Id);
-                chekItem.Price = double.Parse(chekPriceTextBox.Text.Replace(",", ".").Replace(".", ","));
-                chekItem.Quantity = double.Parse(chekQuantityTextBox.Text.Replace(",", ".").Replace(".", ","));
-                db.SaveChanges();
-            }
+            var chekItem = db.ChekItems.Find(idItem);
+            var selectedGoods = chekGoodsListBox.SelectedItem as ListBoxItem;
+            chekItem.GoodsItem = db.Goods.Find(selectedGoods.Id);
+            chekItem.Price = double.Parse(chekPriceTextBox.Text.Replace(",", ".").Replace(".", ","));
+            chekItem.Quantity = double.Parse(chekQuantityTextBox.Text.Replace(",", ".").Replace(".", ","));
         }
        
         #endregion
@@ -197,17 +183,9 @@ namespace BudgetWinForms
 
         private void SaveClick(object sender, EventArgs e)
         {
-            using (var db = new BudgetModel())
-            {
-                var chekItems = db.Purchases.Find(IdPurchase).ChekItems.ToList();
-                if (chekItems.Count != 0) Close();
-                else
-                {
-                    var purchase = db.Purchases.Find(IdPurchase);
-                    db.Purchases.Remove(purchase);
-                    db.SaveChanges();
-                }
-            }
+            db.SaveChanges();
+            db.Dispose();
+            Close();
         }
 
         private void chekItemDataGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -218,15 +196,12 @@ namespace BudgetWinForms
                 saveButton.Enabled = true;
                 chekAddButton.Enabled = false;
                 IdChekItem = (int)(chekItemDataGridView[0, e.RowIndex].Value);
-                using (var db = new BudgetModel())
-                {
-                    var chekItem = db.ChekItems.Find(IdChekItem);
-                    chekCategoryComboBox.SelectedIndex = chekCategoryComboBox.FindString(chekItem.GoodsItem.Category.Name);     
-                    UpdateListBox();
-                    chekGoodsListBox.SelectedIndex = chekGoodsListBox.FindString(chekItem.GoodsItem.Name);
-                    chekPriceTextBox.Text = chekItem.Price.ToString();
-                    chekQuantityTextBox.Text = chekItem.Quantity.ToString();
-                }
+                var chekItem = db.ChekItems.Find(IdChekItem);
+                chekCategoryComboBox.SelectedIndex = chekCategoryComboBox.FindString(chekItem.GoodsItem.Category.Name);     
+                UpdateListBox();
+                chekGoodsListBox.SelectedIndex = chekGoodsListBox.FindString(chekItem.GoodsItem.Name);
+                chekPriceTextBox.Text = chekItem.Price.ToString();
+                chekQuantityTextBox.Text = chekItem.Quantity.ToString();
             }
             else if (e.ColumnIndex == 6)
             {
@@ -235,12 +210,8 @@ namespace BudgetWinForms
                 else
                 {
                     var IdItem = (int)(chekItemDataGridView[0, e.RowIndex].Value);
-                    using (var db = new BudgetModel())
-                    {
-                        var removeItem = db.ChekItems.Find(IdItem);
-                        db.ChekItems.Remove(removeItem);
-                        db.SaveChanges();
-                    }
+                    var removeItem = db.ChekItems.Find(IdItem);
+                    db.ChekItems.Remove(removeItem);
                 }
             }
             UpdateDataGrid();
@@ -253,5 +224,10 @@ namespace BudgetWinForms
         }
 
         #endregion
+
+        private void ChekItemForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            db.Dispose();
+        }
     }
 }

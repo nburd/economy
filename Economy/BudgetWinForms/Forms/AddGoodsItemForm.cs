@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 
 namespace BudgetWinForms
 {
@@ -48,7 +49,7 @@ namespace BudgetWinForms
 
         private void FillForm()
         {
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var categories = db.Categories.ToList();
                 foreach (var category in categories)

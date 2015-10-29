@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
+
 
 namespace BudgetWinForms
 {
@@ -26,7 +28,7 @@ namespace BudgetWinForms
         private void UpdateListBox()
         {
             categoriesListBox.Items.Clear();
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var categories = db.Categories.ToList();
                 foreach (var category in categories)
@@ -45,7 +47,7 @@ namespace BudgetWinForms
             AddItemForm addItemForm = new AddItemForm();
             if(addItemForm.ShowDialog(this) == DialogResult.OK)
             {
-                using (var db = new BudgetModel())
+                using (var db = new Model.BudgetModel())
                 {
                     var category = new Category();
                     if (string.IsNullOrWhiteSpace(addItemForm.Value)) MessageBox.Show("Введите название");
@@ -67,7 +69,7 @@ namespace BudgetWinForms
             AddItemForm addItemForm = new AddItemForm(selectedItem.Name);
             if (addItemForm.ShowDialog(this) == DialogResult.OK)
             {
-                using (var db = new BudgetModel())
+                using (var db = new Model.BudgetModel())
                 {
                     var renameItem = db.Categories.Find(selectedItem.Id);
                     if (string.IsNullOrWhiteSpace(addItemForm.Value)) MessageBox.Show("Введите название");
@@ -83,13 +85,18 @@ namespace BudgetWinForms
 
         private void RemoveToolStripMenuItemClick(object sender, EventArgs e)
         {
-            var selectedItem = categoriesListBox.SelectedItem as ListBoxItem;
-            if (selectedItem == null) return;
-            using (var db = new BudgetModel())
+            var res = MessageBox.Show("Удалить?", "Удаление элемента", MessageBoxButtons.YesNo);
+            if (res == DialogResult.No) return;
+            else
             {
-                var removeItem = db.Categories.Find(selectedItem.Id);
-                db.Categories.Remove(removeItem);
-                db.SaveChanges();
+                var selectedItem = categoriesListBox.SelectedItem as ListBoxItem;
+                if (selectedItem == null) return;
+                using (var db = new Model.BudgetModel())
+                {
+                    var removeItem = db.Categories.Find(selectedItem.Id);
+                    db.Categories.Remove(removeItem);
+                    db.SaveChanges();
+                }
             }
             UpdateListBox();
         }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryForm));
             this.categoriesListBox = new System.Windows.Forms.ListBox();
             this.categoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,9 +42,11 @@
             // 
             this.categoriesListBox.ContextMenuStrip = this.categoryContextMenuStrip;
             this.categoriesListBox.FormattingEnabled = true;
-            this.categoriesListBox.Location = new System.Drawing.Point(13, 13);
+            this.categoriesListBox.Location = new System.Drawing.Point(34, 12);
+            this.categoriesListBox.MaximumSize = new System.Drawing.Size(220, 290);
+            this.categoriesListBox.MinimumSize = new System.Drawing.Size(220, 290);
             this.categoriesListBox.Name = "categoriesListBox";
-            this.categoriesListBox.Size = new System.Drawing.Size(177, 173);
+            this.categoriesListBox.Size = new System.Drawing.Size(220, 290);
             this.categoriesListBox.TabIndex = 0;
             // 
             // categoryContextMenuStrip
@@ -70,7 +73,8 @@
             // 
             // categoryAddButton
             // 
-            this.categoryAddButton.Location = new System.Drawing.Point(13, 202);
+            this.categoryAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.categoryAddButton.Location = new System.Drawing.Point(179, 326);
             this.categoryAddButton.Name = "categoryAddButton";
             this.categoryAddButton.Size = new System.Drawing.Size(75, 23);
             this.categoryAddButton.TabIndex = 1;
@@ -82,9 +86,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 361);
             this.Controls.Add(this.categoryAddButton);
             this.Controls.Add(this.categoriesListBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(300, 400);
+            this.MinimumSize = new System.Drawing.Size(300, 400);
             this.Name = "CategoryForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Категории";

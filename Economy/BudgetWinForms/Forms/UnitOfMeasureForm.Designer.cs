@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UnitOfMeasureForm));
             this.unitOfMeasureListBox = new System.Windows.Forms.ListBox();
             this.unitOfMeasureContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,9 +42,11 @@
             // 
             this.unitOfMeasureListBox.ContextMenuStrip = this.unitOfMeasureContextMenuStrip;
             this.unitOfMeasureListBox.FormattingEnabled = true;
-            this.unitOfMeasureListBox.Location = new System.Drawing.Point(13, 13);
+            this.unitOfMeasureListBox.Location = new System.Drawing.Point(30, 12);
+            this.unitOfMeasureListBox.MaximumSize = new System.Drawing.Size(220, 290);
+            this.unitOfMeasureListBox.MinimumSize = new System.Drawing.Size(220, 290);
             this.unitOfMeasureListBox.Name = "unitOfMeasureListBox";
-            this.unitOfMeasureListBox.Size = new System.Drawing.Size(188, 173);
+            this.unitOfMeasureListBox.Size = new System.Drawing.Size(220, 290);
             this.unitOfMeasureListBox.TabIndex = 0;
             // 
             // unitOfMeasureContextMenuStrip
@@ -70,7 +73,8 @@
             // 
             // unitOfMeasureAddButton
             // 
-            this.unitOfMeasureAddButton.Location = new System.Drawing.Point(13, 193);
+            this.unitOfMeasureAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.unitOfMeasureAddButton.Location = new System.Drawing.Point(175, 326);
             this.unitOfMeasureAddButton.Name = "unitOfMeasureAddButton";
             this.unitOfMeasureAddButton.Size = new System.Drawing.Size(75, 23);
             this.unitOfMeasureAddButton.TabIndex = 1;
@@ -82,9 +86,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 361);
             this.Controls.Add(this.unitOfMeasureAddButton);
             this.Controls.Add(this.unitOfMeasureListBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(300, 400);
+            this.MinimumSize = new System.Drawing.Size(300, 400);
             this.Name = "UnitOfMeasureForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Единицы измерения";

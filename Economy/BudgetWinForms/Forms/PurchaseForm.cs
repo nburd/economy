@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 
 namespace BudgetWinForms
 {
@@ -28,7 +29,7 @@ namespace BudgetWinForms
 
         private void UpdateComboBox()
         {
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var sources = db.Sources.ToList();
                 foreach(var source in sources)
@@ -43,19 +44,28 @@ namespace BudgetWinForms
         private void UpdateDataGrid()
         {
             purchaseDataGridView.Rows.Clear();
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var purchases = db.Purchases.ToList();
                 var renameButton = new DataGridViewButtonCell();
                 var removeButton = new DataGridViewButtonCell();
                 foreach (var purchase in purchases)
-                    purchaseDataGridView.Rows.Add(
-                        purchase.Id,
-                        purchase.DateTime, 
-                        purchase.Source.Name, 
-                        renameButton, 
-                        removeButton
-                    );
+                {
+                    var chekItems = db.Purchases.Find(purchase.Id).ChekItems.ToList();
+                    if (chekItems.Count == 0)
+                    {
+                        db.Purchases.Remove(purchase);
+                        db.SaveChanges();
+                    }
+                    else
+                        purchaseDataGridView.Rows.Add(
+                            purchase.Id,
+                            purchase.DateTime,
+                            purchase.Source.Name,
+                            renameButton,
+                            removeButton
+                        );
+                }
             }
         }
 
@@ -64,8 +74,8 @@ namespace BudgetWinForms
 
         private void purchaseButtonClick(object sender, EventArgs e)
         {
-            using (var db = new BudgetModel())
-            {
+            using (var db = new Model.BudgetModel())
+            { 
                 var purchase = new Purchase();
                 purchase.DateTime = purchaseDateTimePicker.Value;
                 var selectedSource = purchaseComboBox.SelectedItem as ListBoxItem;
@@ -106,7 +116,7 @@ namespace BudgetWinForms
                 else
                 {
                     IdPurchase = (int)(purchaseDataGridView[0, e.RowIndex].Value);
-                    using (var db = new BudgetModel())
+                    using (var db = new Model.BudgetModel())
                     {
                         var removePurchase = db.Purchases.Find(IdPurchase);
                         var removeChekItems = db.Purchases.Find(IdPurchase).ChekItems.ToList();

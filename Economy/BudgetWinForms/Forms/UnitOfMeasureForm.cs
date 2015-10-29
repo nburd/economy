@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 
 namespace BudgetWinForms
 {
@@ -26,7 +27,7 @@ namespace BudgetWinForms
         private void UpdateListBox()
         {
             unitOfMeasureListBox.Items.Clear();
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var unitOfMeasures = db.UnitOfMeasures.ToList();
                 foreach (var unitOfMeasure in unitOfMeasures)
@@ -42,7 +43,7 @@ namespace BudgetWinForms
 
         private void unitOfMeasureAddButtonClick(object sender, EventArgs e)
         {
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var unitOfMeasure = new UnitOfMeasure();
                 AddItemForm addItemForm = new AddItemForm("Введите полное название");
@@ -79,7 +80,7 @@ namespace BudgetWinForms
         {
             var selectedItem = unitOfMeasureListBox.SelectedItem as ComplexListBoxItem;
             if (selectedItem == null) return;
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var renameItem = db.UnitOfMeasures.Find(selectedItem.Id);
                 AddItemForm addItemForm = new AddItemForm(selectedItem.Name);
@@ -108,13 +109,18 @@ namespace BudgetWinForms
 
         private void DeleteToolStripMenuItemClick(object sender, EventArgs e)
         {
-            var selectedItem = unitOfMeasureListBox.SelectedItem as ComplexListBoxItem;
-            if (selectedItem == null) return;
-            using (var db = new BudgetModel())
+            var res = MessageBox.Show("Удалить?", "Удаление элемента", MessageBoxButtons.YesNo);
+            if (res == DialogResult.No) return;
+            else
             {
-                var removeItem = db.UnitOfMeasures.Find(selectedItem.Id); 
-                db.UnitOfMeasures.Remove(removeItem);
-                db.SaveChanges();
+                var selectedItem = unitOfMeasureListBox.SelectedItem as ComplexListBoxItem;
+                if (selectedItem == null) return;
+                using (var db = new Model.BudgetModel())
+                {
+                    var removeItem = db.UnitOfMeasures.Find(selectedItem.Id);
+                    db.UnitOfMeasures.Remove(removeItem);
+                    db.SaveChanges();
+                }
             }
             UpdateListBox();
         }

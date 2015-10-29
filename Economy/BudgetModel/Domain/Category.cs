@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudgetWinForms
+namespace Model
 {
-    public class GoodsItem
+    public class Category
     {
         public int Id { get; set; }
-
+       
+        [Index(IsUnique =true)]
         public string Name { get; set; }
-
-        public virtual Category Category { get; set; }
-
-        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
-
-        public virtual ICollection<ChekItem> ChekItems { get; set; }
+        
+        public virtual ICollection<GoodsItem> GoodsItems { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GoodsItem()
+        public Category()
         {
-            ChekItems = new HashSet<ChekItem>();
+            GoodsItems = new HashSet<GoodsItem>();
         }
     }
 }

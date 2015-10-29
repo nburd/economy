@@ -1,4 +1,4 @@
-namespace BudgetWinForms
+namespace Model
 {
     using System;
     using System.Data.Entity;
@@ -10,14 +10,14 @@ namespace BudgetWinForms
             : base("name=BudgetModel")
         {
         }
-        
+
         public virtual DbSet<Category> Categories { get; set; }
 
         public virtual DbSet<UnitOfMeasure> UnitOfMeasures { get; set; }
 
         public virtual DbSet<Source> Sources { get; set; }
 
-        public virtual DbSet<GoodsItem> Goods{ get; set; }
+        public virtual DbSet<GoodsItem> Goods { get; set; }
 
         public virtual DbSet<Purchase> Purchases { get; set; }
 
@@ -28,7 +28,7 @@ namespace BudgetWinForms
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-           
+
             modelBuilder.Entity<Category>()
                 .HasMany(x => x.GoodsItems)
                 .WithRequired(x => x.Category)
@@ -49,9 +49,16 @@ namespace BudgetWinForms
                 .HasMany(x => x.ChekItems)
                 .WithRequired(x => x.Purchase)
                 .WillCascadeOnDelete(true);
+            modelBuilder.Entity<Category>().Property(c => c.Name)
+                .HasMaxLength(250);
+            modelBuilder.Entity<Source>().Property(c => c.Name)
+                .HasMaxLength(250);
+            modelBuilder.Entity<UnitOfMeasure>().Property(c => c.Name)
+                .HasMaxLength(250);
+            modelBuilder.Entity<GoodsItem>().Property(c => c.Name)
+                .HasMaxLength(250);
 
         }
-
+    }
         #endregion
     }
-}

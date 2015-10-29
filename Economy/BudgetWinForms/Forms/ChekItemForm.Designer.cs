@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChekItemForm));
             this.chekItemDataGridView = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,9 +64,9 @@
             this.Quantity,
             this.Rename,
             this.Remove});
-            this.chekItemDataGridView.Location = new System.Drawing.Point(2, 262);
+            this.chekItemDataGridView.Location = new System.Drawing.Point(12, 276);
             this.chekItemDataGridView.Name = "chekItemDataGridView";
-            this.chekItemDataGridView.Size = new System.Drawing.Size(718, 196);
+            this.chekItemDataGridView.Size = new System.Drawing.Size(639, 211);
             this.chekItemDataGridView.TabIndex = 0;
             this.chekItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.chekItemDataGridViewCellContentClick);
             // 
@@ -115,30 +116,30 @@
             // chekCategoryComboBox
             // 
             this.chekCategoryComboBox.FormattingEnabled = true;
-            this.chekCategoryComboBox.Location = new System.Drawing.Point(13, 13);
+            this.chekCategoryComboBox.Location = new System.Drawing.Point(12, 12);
             this.chekCategoryComboBox.Name = "chekCategoryComboBox";
-            this.chekCategoryComboBox.Size = new System.Drawing.Size(121, 21);
+            this.chekCategoryComboBox.Size = new System.Drawing.Size(177, 21);
             this.chekCategoryComboBox.TabIndex = 1;
             this.chekCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.chekCategoryComboBoxSelectedIndexChanged);
             // 
             // chekGoodsListBox
             // 
             this.chekGoodsListBox.FormattingEnabled = true;
-            this.chekGoodsListBox.Location = new System.Drawing.Point(140, 12);
+            this.chekGoodsListBox.Location = new System.Drawing.Point(12, 45);
             this.chekGoodsListBox.Name = "chekGoodsListBox";
-            this.chekGoodsListBox.Size = new System.Drawing.Size(136, 186);
+            this.chekGoodsListBox.Size = new System.Drawing.Size(177, 199);
             this.chekGoodsListBox.TabIndex = 2;
             // 
             // chekPriceTextBox
             // 
-            this.chekPriceTextBox.Location = new System.Drawing.Point(357, 44);
+            this.chekPriceTextBox.Location = new System.Drawing.Point(294, 45);
             this.chekPriceTextBox.Name = "chekPriceTextBox";
             this.chekPriceTextBox.Size = new System.Drawing.Size(121, 20);
             this.chekPriceTextBox.TabIndex = 3;
             // 
             // chekQuantityTextBox
             // 
-            this.chekQuantityTextBox.Location = new System.Drawing.Point(357, 71);
+            this.chekQuantityTextBox.Location = new System.Drawing.Point(294, 85);
             this.chekQuantityTextBox.Name = "chekQuantityTextBox";
             this.chekQuantityTextBox.Size = new System.Drawing.Size(121, 20);
             this.chekQuantityTextBox.TabIndex = 4;
@@ -146,7 +147,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(283, 44);
+            this.label1.Location = new System.Drawing.Point(220, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 5;
@@ -155,7 +156,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(283, 71);
+            this.label2.Location = new System.Drawing.Point(220, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 6;
@@ -163,7 +164,7 @@
             // 
             // chekAddButton
             // 
-            this.chekAddButton.Location = new System.Drawing.Point(357, 217);
+            this.chekAddButton.Location = new System.Drawing.Point(223, 188);
             this.chekAddButton.Name = "chekAddButton";
             this.chekAddButton.Size = new System.Drawing.Size(75, 23);
             this.chekAddButton.TabIndex = 7;
@@ -175,7 +176,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(594, 464);
+            this.button1.Location = new System.Drawing.Point(576, 519);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
@@ -186,7 +187,7 @@
             // saveButton
             // 
             this.saveButton.Enabled = false;
-            this.saveButton.Location = new System.Drawing.Point(438, 217);
+            this.saveButton.Location = new System.Drawing.Point(340, 188);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 9;
@@ -198,7 +199,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 514);
+            this.ClientSize = new System.Drawing.Size(667, 554);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.chekAddButton);
@@ -209,10 +210,12 @@
             this.Controls.Add(this.chekGoodsListBox);
             this.Controls.Add(this.chekCategoryComboBox);
             this.Controls.Add(this.chekItemDataGridView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(100, 100);
             this.Name = "ChekItemForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Заполнение покупки";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChekItemForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.chekItemDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

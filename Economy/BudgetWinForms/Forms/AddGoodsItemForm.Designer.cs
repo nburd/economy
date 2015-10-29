@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddGoodsItemForm));
             this.addGoodsCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.addGoodsUnitOfMeasureComboBox = new System.Windows.Forms.ComboBox();
             this.addGoodsItemTextBox = new System.Windows.Forms.TextBox();
@@ -37,31 +38,31 @@
             // addGoodsCategoryComboBox
             // 
             this.addGoodsCategoryComboBox.FormattingEnabled = true;
-            this.addGoodsCategoryComboBox.Location = new System.Drawing.Point(13, 13);
+            this.addGoodsCategoryComboBox.Location = new System.Drawing.Point(29, 16);
             this.addGoodsCategoryComboBox.Name = "addGoodsCategoryComboBox";
-            this.addGoodsCategoryComboBox.Size = new System.Drawing.Size(121, 21);
+            this.addGoodsCategoryComboBox.Size = new System.Drawing.Size(159, 21);
             this.addGoodsCategoryComboBox.TabIndex = 0;
             this.addGoodsCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.addGoodsCategoryComboBoxSelectedIndexChanged);
             // 
             // addGoodsUnitOfMeasureComboBox
             // 
             this.addGoodsUnitOfMeasureComboBox.FormattingEnabled = true;
-            this.addGoodsUnitOfMeasureComboBox.Location = new System.Drawing.Point(13, 41);
+            this.addGoodsUnitOfMeasureComboBox.Location = new System.Drawing.Point(29, 70);
             this.addGoodsUnitOfMeasureComboBox.Name = "addGoodsUnitOfMeasureComboBox";
-            this.addGoodsUnitOfMeasureComboBox.Size = new System.Drawing.Size(121, 21);
+            this.addGoodsUnitOfMeasureComboBox.Size = new System.Drawing.Size(159, 21);
             this.addGoodsUnitOfMeasureComboBox.TabIndex = 1;
             this.addGoodsUnitOfMeasureComboBox.SelectedIndexChanged += new System.EventHandler(this.AddGoodsUnitOfMeasureComboBoxSelectedIndexChanged);
             // 
             // addGoodsItemTextBox
             // 
-            this.addGoodsItemTextBox.Location = new System.Drawing.Point(13, 81);
+            this.addGoodsItemTextBox.Location = new System.Drawing.Point(29, 119);
             this.addGoodsItemTextBox.Name = "addGoodsItemTextBox";
-            this.addGoodsItemTextBox.Size = new System.Drawing.Size(121, 20);
+            this.addGoodsItemTextBox.Size = new System.Drawing.Size(159, 20);
             this.addGoodsItemTextBox.TabIndex = 2;
             // 
             // addGoodsItemButton
             // 
-            this.addGoodsItemButton.Location = new System.Drawing.Point(58, 108);
+            this.addGoodsItemButton.Location = new System.Drawing.Point(113, 172);
             this.addGoodsItemButton.Name = "addGoodsItemButton";
             this.addGoodsItemButton.Size = new System.Drawing.Size(75, 23);
             this.addGoodsItemButton.TabIndex = 3;
@@ -74,13 +75,17 @@
             this.AcceptButton = this.addGoodsItemButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(214, 231);
             this.Controls.Add(this.addGoodsItemButton);
             this.Controls.Add(this.addGoodsItemTextBox);
             this.Controls.Add(this.addGoodsUnitOfMeasureComboBox);
             this.Controls.Add(this.addGoodsCategoryComboBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(840, 320);
+            this.MaximumSize = new System.Drawing.Size(230, 270);
+            this.MinimumSize = new System.Drawing.Size(230, 270);
             this.Name = "AddGoodsItemForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Добавление товара";
             this.ResumeLayout(false);
             this.PerformLayout();

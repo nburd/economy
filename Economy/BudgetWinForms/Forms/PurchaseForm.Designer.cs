@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseForm));
             this.purchaseDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.purchaseComboBox = new System.Windows.Forms.ComboBox();
             this.purchaseButton = new System.Windows.Forms.Button();
@@ -42,22 +43,26 @@
             // 
             // purchaseDateTimePicker
             // 
-            this.purchaseDateTimePicker.Location = new System.Drawing.Point(12, 12);
+            this.purchaseDateTimePicker.Location = new System.Drawing.Point(96, 33);
+            this.purchaseDateTimePicker.MaximumSize = new System.Drawing.Size(180, 20);
+            this.purchaseDateTimePicker.MinimumSize = new System.Drawing.Size(180, 20);
             this.purchaseDateTimePicker.Name = "purchaseDateTimePicker";
-            this.purchaseDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.purchaseDateTimePicker.Size = new System.Drawing.Size(180, 20);
             this.purchaseDateTimePicker.TabIndex = 0;
             // 
             // purchaseComboBox
             // 
             this.purchaseComboBox.FormattingEnabled = true;
-            this.purchaseComboBox.Location = new System.Drawing.Point(231, 11);
+            this.purchaseComboBox.Location = new System.Drawing.Point(295, 32);
+            this.purchaseComboBox.MaximumSize = new System.Drawing.Size(180, 0);
+            this.purchaseComboBox.MinimumSize = new System.Drawing.Size(180, 0);
             this.purchaseComboBox.Name = "purchaseComboBox";
-            this.purchaseComboBox.Size = new System.Drawing.Size(121, 21);
+            this.purchaseComboBox.Size = new System.Drawing.Size(180, 21);
             this.purchaseComboBox.TabIndex = 1;
             // 
             // purchaseButton
             // 
-            this.purchaseButton.Location = new System.Drawing.Point(155, 38);
+            this.purchaseButton.Location = new System.Drawing.Point(228, 69);
             this.purchaseButton.Name = "purchaseButton";
             this.purchaseButton.Size = new System.Drawing.Size(123, 23);
             this.purchaseButton.TabIndex = 2;
@@ -68,6 +73,9 @@
             // purchaseDataGridView
             // 
             this.purchaseDataGridView.AllowUserToAddRows = false;
+            this.purchaseDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.purchaseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.purchaseDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -75,9 +83,9 @@
             this.Source,
             this.Rename,
             this.Remove});
-            this.purchaseDataGridView.Location = new System.Drawing.Point(1, 99);
+            this.purchaseDataGridView.Location = new System.Drawing.Point(12, 134);
             this.purchaseDataGridView.Name = "purchaseDataGridView";
-            this.purchaseDataGridView.Size = new System.Drawing.Size(559, 111);
+            this.purchaseDataGridView.Size = new System.Drawing.Size(545, 199);
             this.purchaseDataGridView.TabIndex = 3;
             this.purchaseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchaseDataGridViewCellContentClick);
             // 
@@ -106,7 +114,7 @@
             this.Rename.HeaderText = "Изменить";
             this.Rename.Name = "Rename";
             this.Rename.ReadOnly = true;
-            this.Rename.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Rename.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Rename.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Rename.Text = "Изменить";
             this.Rename.UseColumnTextForButtonValue = true;
@@ -115,7 +123,8 @@
             // 
             this.Remove.HeaderText = "Удалить";
             this.Remove.Name = "Remove";
-            this.Remove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Remove.ReadOnly = true;
+            this.Remove.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Remove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Remove.Text = "Удалить";
             this.Remove.UseColumnTextForButtonValue = true;
@@ -125,11 +134,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(596, 345);
+            this.ClientSize = new System.Drawing.Size(558, 345);
             this.Controls.Add(this.purchaseDataGridView);
             this.Controls.Add(this.purchaseButton);
             this.Controls.Add(this.purchaseComboBox);
             this.Controls.Add(this.purchaseDateTimePicker);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PurchaseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Покупки";

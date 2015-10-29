@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddItemForm));
             this.addItemTextBox = new System.Windows.Forms.TextBox();
             this.OkButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addItemTextBox
             // 
-            this.addItemTextBox.Location = new System.Drawing.Point(13, 13);
+            this.addItemTextBox.Location = new System.Drawing.Point(24, 36);
             this.addItemTextBox.Name = "addItemTextBox";
             this.addItemTextBox.Size = new System.Drawing.Size(180, 20);
             this.addItemTextBox.TabIndex = 0;
@@ -42,7 +43,7 @@
             // OkButton
             // 
             this.OkButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OkButton.Location = new System.Drawing.Point(144, 51);
+            this.OkButton.Location = new System.Drawing.Point(156, 80);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(48, 23);
             this.OkButton.TabIndex = 1;
@@ -55,10 +56,13 @@
             this.AcceptButton = this.OkButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(234, 161);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.addItemTextBox);
-            this.Location = new System.Drawing.Point(850, 500);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(830, 360);
+            this.MaximumSize = new System.Drawing.Size(250, 200);
+            this.MinimumSize = new System.Drawing.Size(250, 200);
             this.Name = "AddItemForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Добавление элемента";

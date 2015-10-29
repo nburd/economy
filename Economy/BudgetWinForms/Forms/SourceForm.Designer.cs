@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SourceForm));
             this.sourcesListBox = new System.Windows.Forms.ListBox();
             this.sourceContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,9 +42,11 @@
             // 
             this.sourcesListBox.ContextMenuStrip = this.sourceContextMenuStrip;
             this.sourcesListBox.FormattingEnabled = true;
-            this.sourcesListBox.Location = new System.Drawing.Point(13, 13);
+            this.sourcesListBox.Location = new System.Drawing.Point(29, 12);
+            this.sourcesListBox.MaximumSize = new System.Drawing.Size(220, 290);
+            this.sourcesListBox.MinimumSize = new System.Drawing.Size(220, 290);
             this.sourcesListBox.Name = "sourcesListBox";
-            this.sourcesListBox.Size = new System.Drawing.Size(184, 186);
+            this.sourcesListBox.Size = new System.Drawing.Size(220, 290);
             this.sourcesListBox.TabIndex = 0;
             // 
             // sourceContextMenuStrip
@@ -70,7 +73,7 @@
             // 
             // sourceAddButton
             // 
-            this.sourceAddButton.Location = new System.Drawing.Point(13, 206);
+            this.sourceAddButton.Location = new System.Drawing.Point(174, 326);
             this.sourceAddButton.Name = "sourceAddButton";
             this.sourceAddButton.Size = new System.Drawing.Size(75, 23);
             this.sourceAddButton.TabIndex = 1;
@@ -82,9 +85,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 361);
             this.Controls.Add(this.sourceAddButton);
             this.Controls.Add(this.sourcesListBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(300, 400);
+            this.MinimumSize = new System.Drawing.Size(300, 400);
             this.Name = "SourceForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Источники";

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoodsForm));
             this.goodsItemComboBox = new System.Windows.Forms.ComboBox();
             this.goodsItemListBox = new System.Windows.Forms.ListBox();
             this.goodsItemContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -41,9 +42,9 @@
             // goodsItemComboBox
             // 
             this.goodsItemComboBox.FormattingEnabled = true;
-            this.goodsItemComboBox.Location = new System.Drawing.Point(13, 13);
+            this.goodsItemComboBox.Location = new System.Drawing.Point(26, 12);
             this.goodsItemComboBox.Name = "goodsItemComboBox";
-            this.goodsItemComboBox.Size = new System.Drawing.Size(168, 21);
+            this.goodsItemComboBox.Size = new System.Drawing.Size(220, 21);
             this.goodsItemComboBox.TabIndex = 0;
             this.goodsItemComboBox.SelectedIndexChanged += new System.EventHandler(this.goodsItemComboBoxSelectedIndexChanged);
             // 
@@ -51,9 +52,11 @@
             // 
             this.goodsItemListBox.ContextMenuStrip = this.goodsItemContextMenuStrip;
             this.goodsItemListBox.FormattingEnabled = true;
-            this.goodsItemListBox.Location = new System.Drawing.Point(13, 41);
+            this.goodsItemListBox.Location = new System.Drawing.Point(26, 69);
+            this.goodsItemListBox.MaximumSize = new System.Drawing.Size(220, 290);
+            this.goodsItemListBox.MinimumSize = new System.Drawing.Size(220, 290);
             this.goodsItemListBox.Name = "goodsItemListBox";
-            this.goodsItemListBox.Size = new System.Drawing.Size(178, 212);
+            this.goodsItemListBox.Size = new System.Drawing.Size(220, 290);
             this.goodsItemListBox.TabIndex = 1;
             // 
             // goodsItemContextMenuStrip
@@ -69,7 +72,7 @@
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
             this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.изменитьToolStripMenuItem.Text = "Изменить";
-            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.RemoveToolStripMenuItemClick);
+            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.RenameToolStripMenuItemClick);
             // 
             // удалитьToolStripMenuItem
             // 
@@ -80,7 +83,7 @@
             // 
             // goodsItemAddButton
             // 
-            this.goodsItemAddButton.Location = new System.Drawing.Point(12, 268);
+            this.goodsItemAddButton.Location = new System.Drawing.Point(171, 376);
             this.goodsItemAddButton.Name = "goodsItemAddButton";
             this.goodsItemAddButton.Size = new System.Drawing.Size(75, 23);
             this.goodsItemAddButton.TabIndex = 2;
@@ -92,10 +95,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 395);
+            this.ClientSize = new System.Drawing.Size(284, 411);
             this.Controls.Add(this.goodsItemAddButton);
             this.Controls.Add(this.goodsItemListBox);
             this.Controls.Add(this.goodsItemComboBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GoodsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Товары";

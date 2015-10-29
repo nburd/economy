@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 
 namespace BudgetWinForms
 {
@@ -26,7 +27,7 @@ namespace BudgetWinForms
         private void UpdateListBox()
         {
             goodsItemListBox.Items.Clear();
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var selectedCategory = goodsItemComboBox.SelectedItem as ListBoxItem;
                 if (selectedCategory == null) return;
@@ -41,7 +42,7 @@ namespace BudgetWinForms
 
         private void UpdateComboBoxCategory()
         {
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var categories = db.Categories.ToList();
                 foreach (var category in categories)
@@ -57,7 +58,7 @@ namespace BudgetWinForms
 
         private void goodsItemAddButtonClick(object sender, EventArgs e)
         {
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var selectedCategory = goodsItemComboBox.SelectedItem as ListBoxItem;
                 AddGoodsItemForm addGoodsItemForm = new AddGoodsItemForm();
@@ -79,9 +80,9 @@ namespace BudgetWinForms
 
         private void goodsItemComboBoxSelectedIndexChanged(object sender, EventArgs e) => UpdateListBox();
 
-        private void RemoveToolStripMenuItemClick(object sender, EventArgs e)
+        private void RenameToolStripMenuItemClick(object sender, EventArgs e)
         {
-            using (var db = new BudgetModel())
+            using (var db = new Model.BudgetModel())
             {
                 var selectedItem = goodsItemListBox.SelectedItem as ListBoxItem;
                 if (selectedItem == null) return;
@@ -89,8 +90,8 @@ namespace BudgetWinForms
                 var selectedGoodsItem = db.Goods.Find(selectedItem.Id);
                 var selectedUnitOfMeasure = db.UnitOfMeasures.Find(selectedGoodsItem.UnitOfMeasure.Id);
                 AddGoodsItemForm addGoodsForm = new AddGoodsItemForm(
-                    selectedCategory, 
-                    selectedUnitOfMeasure, 
+                    selectedCategory,
+                    selectedUnitOfMeasure,
                     selectedGoodsItem.Name
                     );
                 addGoodsForm.ShowDialog(this);
@@ -108,13 +109,18 @@ namespace BudgetWinForms
 
         private void DeleteToolStripMenuItemClick(object sender, EventArgs e)
         {
-            using (var db = new BudgetModel())
+            var res = MessageBox.Show("Удалить?", "Удаление элемента", MessageBoxButtons.YesNo);
+            if (res == DialogResult.No) return;
+            else
             {
-                var selectedItem = goodsItemListBox.SelectedItem as ListBoxItem;
-                if (selectedItem == null) return;
-                var removeGoodsItem = db.Goods.Find(selectedItem.Id);
-                db.Goods.Remove(removeGoodsItem);
-                db.SaveChanges();
+                using (var db = new Model.BudgetModel())
+                {
+                    var selectedItem = goodsItemListBox.SelectedItem as ListBoxItem;
+                    if (selectedItem == null) return;
+                    var removeGoodsItem = db.Goods.Find(selectedItem.Id);
+                    db.Goods.Remove(removeGoodsItem);
+                    db.SaveChanges();
+                }
             }
             UpdateListBox();
         }
