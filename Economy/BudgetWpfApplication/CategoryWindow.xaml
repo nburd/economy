@@ -5,6 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetWpfApplication"
         mc:Ignorable="d"
-        Title="CategoryWindow" Height="300" Width="300">
-    <ListBox x:Name="categoryListBox" Margin="10,10,99,10" SelectionChanged="listBox_SelectionChanged"/>
+        Title="Категории" Height="370" Width="320" Background="CadetBlue" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,0">
+        <ListBox Name="categoryLstBox" Height="270" Margin="31,10,31,0" VerticalAlignment="Top" Background="#FFE8F3F3" Width="200" BorderThickness="3" FontSize="16">
+            <ListBox.ContextMenu>
+                <ContextMenu Name="cm">
+                    <MenuItem Header="Изменить" Click="RenameMenuItemClick"/>
+                    <MenuItem Header="Удалить" Click="RemoveMenuItemClick"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+            <TextBlock Text="{Binding Name}"/>
+        </ListBox>
+        <Button x:Name="addButton" Content="Добавить" HorizontalAlignment="Right" Margin="0,292,56,0" VerticalAlignment="Top" Width="75" Click="addButton_Click" Background="#FFE9EFF0" Height="27"/>
+    </Grid>
 </Window>

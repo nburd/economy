@@ -11,7 +11,7 @@ namespace Model
     {
         public int Id { get; set; }
        
-        [Index(IsUnique =true)]
+        [Index(IsUnique = true)]                
         public string Name { get; set; }
         
         public virtual ICollection<GoodsItem> GoodsItems { get; set; }

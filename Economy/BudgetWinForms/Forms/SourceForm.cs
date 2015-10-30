@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 
 namespace BudgetWinForms
 {
@@ -58,8 +60,21 @@ namespace BudgetWinForms
                         {
                             db.SaveChanges();
                         }
-                        catch(Exception ex)
+                        catch (DbUpdateException ex)
                         {
+                            var sqlErrors = ex?.InnerException?.InnerException as SqlException;
+                            // 2601 - cannot insert duplicate key.
+                            if (sqlErrors.Number == 2601)
+                            {
+                                MessageBox.Show("Такое название уже существует.");
+                            }
+                            else
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+                        catch (Exception ex)
+                        {                            
                             MessageBox.Show(ex.Message);
                         }
                         

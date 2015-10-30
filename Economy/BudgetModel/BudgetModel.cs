@@ -33,31 +33,38 @@ namespace Model
                 .HasMany(x => x.GoodsItems)
                 .WithRequired(x => x.Category)
                 .WillCascadeOnDelete(true);
+
             modelBuilder.Entity<UnitOfMeasure>()
                 .HasMany(x => x.GoodsItems)
                 .WithRequired(x => x.UnitOfMeasure)
                 .WillCascadeOnDelete(true);
+
             modelBuilder.Entity<Source>()
                 .HasMany(x => x.Purchases)
                 .WithRequired(x => x.Source)
                 .WillCascadeOnDelete(true);
+
             modelBuilder.Entity<GoodsItem>()
                .HasMany(x => x.ChekItems)
                .WithRequired(x => x.GoodsItem)
                .WillCascadeOnDelete(true);
+
             modelBuilder.Entity<Purchase>()
                 .HasMany(x => x.ChekItems)
                 .WithRequired(x => x.Purchase)
                 .WillCascadeOnDelete(true);
+
             modelBuilder.Entity<Category>().Property(c => c.Name)
                 .HasMaxLength(250);
+
             modelBuilder.Entity<Source>().Property(c => c.Name)
                 .HasMaxLength(250);
+
             modelBuilder.Entity<UnitOfMeasure>().Property(c => c.Name)
                 .HasMaxLength(250);
+
             modelBuilder.Entity<GoodsItem>().Property(c => c.Name)
                 .HasMaxLength(250);
-
         }
     }
         #endregion

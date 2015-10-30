@@ -5,12 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetWpfApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="370" Width="550" Background="Bisque">
-    <Grid>
-        <Button x:Name="categoryButton" Content="Категории" Margin="104,32,360,0" VerticalAlignment="Top" Width="78" Height="40" HorizontalContentAlignment="Center" Click="categoryButton_Click"/>
-        <Button x:Name="unitOfMeasureButton" Content="Ед.измерения" Margin="104,98,360,0" VerticalAlignment="Top" Width="78" Height="40" HorizontalContentAlignment="Center"/>
-        <Button x:Name="sourceButton" Content="Источники" Margin="104,149,360,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.468,1.207" Height="40" HorizontalContentAlignment="Center"/>
-        <Button x:Name="goodsButton" Content="Товары" Margin="104,209,360,0" VerticalAlignment="Top" Width="78" Height="40" HorizontalContentAlignment="Center"/>
-        <Button x:Name="purchaseButton" Content="Покупки" Margin="104,263,360,0" VerticalAlignment="Top" Width="78" Height="40" HorizontalContentAlignment="Center"/>
+        Title="Экономия" Height="370" Width="320" Background="CadetBlue" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Stretch" Width="314">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Name="categoryButton" Grid.Row="0" Content="Категории" Click="categoryButton_Click" HorizontalAlignment="Stretch" Style="{StaticResource MyButtonStyle}"/>
+            <Button Name="unitOfMeasureButton" Grid.Row="1" Content="Ед.измерения" Click="unitOfMeasureButton_Click" HorizontalAlignment="Stretch" Style="{StaticResource MyButtonStyle}"/>
+            <Button Name="sourceButton" Grid.Row="2" Content="Источники" HorizontalAlignment="Stretch" Style="{StaticResource MyButtonStyle}"/>
+            <Button Name="goodsButton" Grid.Row="3" Content="Товары" HorizontalAlignment="Stretch" Style="{StaticResource MyButtonStyle}"/>
+            <Button Name="purchaseButton" Grid.Row="4" Content="Покупки" HorizontalAlignment="Stretch" Style="{StaticResource MyButtonStyle}"/>
+        </Grid>
     </Grid>
 </Window>

@@ -23,12 +23,19 @@ namespace BudgetWpfApplication
         public MainWindow()
         {
             InitializeComponent();
+            using (var db = new Model.BudgetModel()) { }
         }
 
         private void categoryButton_Click(object sender, RoutedEventArgs e)
         {
             CategoryWindow category = new CategoryWindow();
-            category.Show();
+            category.ShowDialog();
+        }
+
+        private void unitOfMeasureButton_Click(object sender, RoutedEventArgs e)
+        {
+            UnitofMeasureWindow unitOfMeasure = new UnitofMeasureWindow();
+            unitOfMeasure.ShowDialog();
         }
     }
 }
