@@ -37,5 +37,17 @@ namespace BudgetWpfApplication
             UnitofMeasureWindow unitOfMeasure = new UnitofMeasureWindow();
             unitOfMeasure.ShowDialog();
         }
+
+        private void sourceButton_Click(object sender, RoutedEventArgs e)
+        {
+            SourceWindow source = new SourceWindow();
+            source.ShowDialog();
+        }
+
+        private void goodsButton_Click(object sender, RoutedEventArgs e)
+        {
+            GoodsWindow goods = new GoodsWindow();
+            goods.ShowDialog();
+        }
     }
 }

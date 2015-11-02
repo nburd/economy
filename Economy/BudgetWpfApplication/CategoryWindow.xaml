@@ -5,9 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetWpfApplication"
         mc:Ignorable="d"
-        Title="Категории" Height="370" Width="320" Background="CadetBlue" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,0,0">
-        <ListBox Name="categoryLstBox" Height="270" Margin="31,10,31,0" VerticalAlignment="Top" Background="#FFE8F3F3" Width="200" BorderThickness="3" FontSize="16">
+        Title="Категории" Background="CadetBlue" WindowStartupLocation="CenterScreen" MinWidth="310" MinHeight="400" Width="310" Height="400">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="55*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="55*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="300*"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <ListBox Name="categoryLstBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Background="#FFE8F3F3" BorderThickness="3" FontSize="16">
             <ListBox.ContextMenu>
                 <ContextMenu Name="cm">
                     <MenuItem Header="Изменить" Click="RenameMenuItemClick"/>
@@ -16,6 +26,6 @@
             </ListBox.ContextMenu>
             <TextBlock Text="{Binding Name}"/>
         </ListBox>
-        <Button x:Name="addButton" Content="Добавить" HorizontalAlignment="Right" Margin="0,292,56,0" VerticalAlignment="Top" Width="75" Click="addButton_Click" Background="#FFE9EFF0" Height="27"/>
+        <Button x:Name="addButton" Grid.Column="1" Grid.Row="2" Content="Добавить" Width="75" Click="addButton_Click" Background="#FFE9EFF0" Height="27" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
     </Grid>
 </Window>
