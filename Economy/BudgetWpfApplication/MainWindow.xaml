@@ -7,8 +7,26 @@
         mc:Ignorable="d"
         Title="Экономия" Height="370" MinHeight="370" Width="320" MinWidth="320" Background="CadetBlue" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <Style x:Key="MyButtonStyle" TargetType="Button">
-            <Setter Property="Margin" Value="3"/>
+        <Style x:Key="MyButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border 
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+                            <ContentPresenter Name="Presenter" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
     <Grid HorizontalAlignment="Stretch" Width="314">
@@ -34,7 +52,7 @@
             <Button Name="unitOfMeasureButton" Grid.Row="1" Content="Ед.измерения" Click="unitOfMeasureButton_Click" HorizontalAlignment="Stretch" Style="{StaticResource MyButtonStyle}"/>
             <Button Name="sourceButton" Grid.Row="2" Content="Источники" HorizontalAlignment="Stretch" Style="{StaticResource MyButtonStyle}" Click="sourceButton_Click"/>
             <Button Name="goodsButton" Grid.Row="3" Content="Товары" HorizontalAlignment="Stretch" Style="{StaticResource MyButtonStyle}" Click="goodsButton_Click"/>
-            <Button Name="purchaseButton" Grid.Row="4" Content="Покупки" HorizontalAlignment="Stretch" Style="{StaticResource MyButtonStyle}"/>
+            <Button Name="purchaseButton" Grid.Row="4" Content="Покупки" HorizontalAlignment="Stretch" Style="{StaticResource MyButtonStyle}" Click="purchaseButton_Click"/>
         </Grid>
     </Grid>
 </Window>

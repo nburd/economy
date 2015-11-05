@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetWpfApplication"
         mc:Ignorable="d"
-        Title="AddGoodsWindow" Height="250" Width="250" Background="CadetBlue" WindowStartupLocation="CenterScreen">
+        Title="Добавление товара" Height="300" MinHeight="300" Width="250" MinWidth="250" Background="CadetBlue" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"/>
@@ -13,22 +13,18 @@
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="80*"/>
         </Grid.RowDefinitions>
-        <ComboBox Name="categoryCmbBox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" FontSize="14">
+        <ComboBox Name="categoryCmbBox" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" FontSize="16" VerticalAlignment="Center" FontFamily="Comic Sans MS">
             <TextBlock Text="{Binding Name}"/>
         </ComboBox>
-        <ComboBox Name="unitOfMeasureCmbBox" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" FontSize="14">
+        <ComboBox Name="unitOfMeasureCmbBox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" FontSize="16" VerticalAlignment="Center" FontFamily="Comic Sans MS">
             <TextBlock Text="{Binding Name}"/>
         </ComboBox>
-        <TextBox Name="goodsTextBox" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" FontSize="14"/>
-        <Button Name="okButton" Content="OK" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Right" Width="60" Click="okButton_Click"/>
+        <TextBox Name="goodsTextBox" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" FontSize="16" Margin="0,20,0,20" VerticalContentAlignment="Center" FontFamily="Comic Sans MS"/>
+        <Button Name="okButton" Content="OK" Grid.Column="1" Grid.Row="3" VerticalAlignment="Stretch" Margin="100,20,0,20" Click="okButton_Click" FontSize="16" FontFamily="Comic Sans MS" IsDefault="True" IsCancel="True"/>
     </Grid>
 </Window>

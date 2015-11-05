@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetWpfApplication"
         mc:Ignorable="d"
-        Title="SourceWindow" Height="400" MinHeight="400" Width="310" MinWidth="310" WindowStartupLocation="CenterScreen" Background="CadetBlue" >
+        Title="Источники" Height="400" MinHeight="400" Width="310" MinWidth="310" WindowStartupLocation="CenterScreen" Background="CadetBlue" >
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="55*"/>
@@ -19,7 +19,7 @@
             <RowDefinition Height="30*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-        <ListBox Name="sourceLstBox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE8F3F3" FontSize="16" BorderThickness="3">
+        <ListBox Name="sourceLstBox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE8F3F3" FontSize="16" BorderThickness="3" FontFamily="Comic Sans MS">
             <TextBlock Text="{Binding Name}"/>
             <ListBox.ContextMenu>
                 <ContextMenu Name="sourceCM">
@@ -28,6 +28,6 @@
                 </ContextMenu>
             </ListBox.ContextMenu>  
         </ListBox>
-        <Button Name="addButton" Content="Добавить" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Stretch" Click="addButton_Click" Width="90"/>
+        <Button Name="addButton" Content="Добавить" Grid.Column="1" Grid.Row="3" Click="addButton_Click" FontFamily="Comic Sans MS" FontSize="14" Margin="100,0,0,0"/>
     </Grid>
 </Window>

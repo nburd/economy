@@ -49,5 +49,11 @@ namespace BudgetWpfApplication
             GoodsWindow goods = new GoodsWindow();
             goods.ShowDialog();
         }
+
+        private void purchaseButton_Click(object sender, RoutedEventArgs e)
+        {
+            PurchaseWindow purchase = new PurchaseWindow();
+            purchase.ShowDialog();
+        }
     }
 }

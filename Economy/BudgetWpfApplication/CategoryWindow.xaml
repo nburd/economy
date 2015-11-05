@@ -17,7 +17,7 @@
             <RowDefinition Height="300*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
-        <ListBox Name="categoryLstBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Background="#FFE8F3F3" BorderThickness="3" FontSize="16">
+        <ListBox Name="categoryLstBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Background="#FFE8F3F3" BorderThickness="3" FontSize="16" FontFamily="Comic Sans MS">
             <ListBox.ContextMenu>
                 <ContextMenu Name="cm">
                     <MenuItem Header="Изменить" Click="RenameMenuItemClick"/>
@@ -26,6 +26,6 @@
             </ListBox.ContextMenu>
             <TextBlock Text="{Binding Name}"/>
         </ListBox>
-        <Button x:Name="addButton" Grid.Column="1" Grid.Row="2" Content="Добавить" Width="75" Click="addButton_Click" Background="#FFE9EFF0" Height="27" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
+        <Button x:Name="addButton" Grid.Column="1" Grid.Row="2" Content="Добавить" Click="addButton_Click" Margin="100,5,0,10" FontFamily="Comic Sans MS" FontSize="14"/>
     </Grid>
 </Window>

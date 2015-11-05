@@ -67,8 +67,14 @@
     <Compile Include="AddGoodsWindow.xaml.cs">
       <DependentUpon>AddGoodsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChekItemWindow.xaml.cs">
+      <DependentUpon>ChekItemWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GoodsWindow.xaml.cs">
       <DependentUpon>GoodsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseWindow.xaml.cs">
+      <DependentUpon>PurchaseWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SourceWindow.xaml.cs">
       <DependentUpon>SourceWindow.xaml</DependentUpon>
@@ -85,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CategoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChekItemWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,6 +122,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PurchaseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SourceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

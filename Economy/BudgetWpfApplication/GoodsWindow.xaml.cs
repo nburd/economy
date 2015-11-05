@@ -46,6 +46,7 @@ namespace BudgetWpfApplication
                 }
                 goodsComboBox.ItemsSource = items;
             }
+            goodsComboBox.SelectedIndex = 1;
         }
 
         private void UpdateListBox()
@@ -87,6 +88,7 @@ namespace BudgetWpfApplication
                 db.Goods.Add(goodsItem);
                 db.SaveChanges();
             }
+            UpdateListBox();
         }
 
         private void RenameMenuItemClick(object sender, RoutedEventArgs e)

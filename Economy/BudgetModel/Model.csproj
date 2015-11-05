@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201510291118368_newModel.Designer.cs">
       <DependentUpon>201510291118368_newModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511050948206_CheksUnique2.cs" />
+    <Compile Include="Migrations\201511050948206_CheksUnique2.Designer.cs">
+      <DependentUpon>201511050948206_CheksUnique2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +77,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510291118368_newModel.resx">
       <DependentUpon>201510291118368_newModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511050948206_CheksUnique2.resx">
+      <DependentUpon>201511050948206_CheksUnique2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
