@@ -65,7 +65,7 @@ namespace BudgetWpfApplication
         #endregion
         #region Events Handlers
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        private void AddButtonClick(object sender, RoutedEventArgs e)
         {
             using (var db = new Model.BudgetModel())
             {
@@ -86,7 +86,7 @@ namespace BudgetWpfApplication
             UpdateDataGrid();
         }
 
-        private void renameButtonClick(object sender, RoutedEventArgs e)
+        private void RenameButtonClick(object sender, RoutedEventArgs e)
         {
             using (var db = new Model.BudgetModel())
             {
@@ -97,7 +97,7 @@ namespace BudgetWpfApplication
             UpdateDataGrid();
         }
 
-        private void removeButtonClick(object sender, RoutedEventArgs e)
+        private void RemoveButtonClick(object sender, RoutedEventArgs e)
         {
             var res = MessageBox.Show("Удалить?", "Удаление", MessageBoxButton.YesNo);
             if (res == MessageBoxResult.No) return;
@@ -110,7 +110,7 @@ namespace BudgetWpfApplication
             }
         }
 
-        private void changeButtonClick(object sender, RoutedEventArgs e)
+        private void ChangeButtonClick(object sender, RoutedEventArgs e)
         {
             addButton.Visibility = Visibility.Hidden;
             cancelButton.Visibility = Visibility.Visible;
@@ -132,7 +132,7 @@ namespace BudgetWpfApplication
             }
         }
 
-        private void saveButClick(object sender, RoutedEventArgs e)
+        private void SaveButClick(object sender, RoutedEventArgs e)
         {
             using (var db = new Model.BudgetModel())
             {
@@ -150,13 +150,16 @@ namespace BudgetWpfApplication
         }
 
 
-        private void cancelButtonClick(object sender, RoutedEventArgs e)
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             saveBut.IsEnabled = false;
             purchaseDataGrid.IsEnabled = true;
             cancelButton.Visibility = Visibility.Hidden;
             addButton.Visibility = Visibility.Visible;
         }
+
+        private void PurchaseDataGridLoadingRow(object sender, DataGridRowEventArgs e)=>        
+            e.Row.Header = e.Row.GetIndex() + 1;
 
         #endregion
     }

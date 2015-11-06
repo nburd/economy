@@ -64,15 +64,16 @@ namespace BudgetWpfApplication
                     items.Add(item);
                 }
                 goodsLstBox.ItemsSource = items;
+                goodsLstBox.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
             } 
         }
 
         #endregion
         #region Events Handlers
 
-        private void goodsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateListBox();
+        private void GoodsComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateListBox();
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        private void AddButtonClick(object sender, RoutedEventArgs e)
         {
             var selectedItem = goodsComboBox.SelectedValue as ListBoxItem;
             AddGoodsWindow addGoodsWindow = new AddGoodsWindow();

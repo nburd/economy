@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetWpfApplication"
         mc:Ignorable="d"
-        Title="ChekItemWindow" Height="700" MinHeight="700" Width="700" MinWidth="700" Background="CadetBlue" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="ChekItemWindow" Height="700" MinHeight="700" Width="700" MinWidth="700" Background="CadetBlue" WindowStartupLocation="CenterScreen" Closing="WindowClosing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300*"/>
@@ -27,15 +27,14 @@
         </ListBox>
         <Label Content="Цена за ед." Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="Comic Sans MS"/>
         <Label Content="Количество" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="Comic Sans MS"/>
-        <TextBox Name="priceTxtBox" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,60,10" VerticalContentAlignment="Center" FontSize="16" FontFamily="Comic Sans MS" Focusable="True" GotFocus="priceTxtBoxGotFocus"/>
-        <TextBox Name="quantityTxtBox" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,60,10" VerticalContentAlignment="Center" FontSize="16" FontFamily="Comic Sans MS" Focusable="True" GotFocus="quantityTxtBoxGotFocus"/>
-        <Button Name="addButton" Content="Добавить" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Padding="5" FontSize="16" Click="addButton_Click" FontFamily="Comic Sans MS" IsDefault="True"/>
-        <Button Name="cancelButton" Content="Отменить" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Padding="5" FontSize="16" Click="cancelButtonClick" FontFamily="Comic Sans MS" Visibility="Hidden"/>
-        <Button Name="saveButton" Content="Сохранить" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="5" FontSize="16" Click="saveButtonClick" FontFamily="Comic Sans MS" Visibility="Hidden"/>
-        <Button Name="savePurchaseButton" Content="Сохранить покупку" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="5" FontSize="16" Click="savePurchaseButtonClick" FontFamily="Comic Sans MS"/>
-        <DataGrid Name="chekItemsDataGrid" Grid.ColumnSpan="3" Grid.Row="3" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="16" FontFamily="Comic Sans MS" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <TextBox Name="priceTxtBox" Grid.Column="2" Grid.Row="0" VerticalAlignment="Stretch" Margin="10,15,60,15" VerticalContentAlignment="Center" FontSize="16" FontFamily="Comic Sans MS" Focusable="True" GotFocus="PriceTxtBoxGotFocus"/>
+        <TextBox Name="quantityTxtBox" Grid.Column="2" Grid.Row="1" VerticalAlignment="Stretch" Margin="10,15,60,15" VerticalContentAlignment="Center" FontSize="16" FontFamily="Comic Sans MS" Focusable="True" GotFocus="QuantityTxtBoxGotFocus"/>
+        <Button Name="addButton" Content="Добавить" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Padding="5" FontSize="16" Click="AddButtonClick" FontFamily="Comic Sans MS" IsDefault="True"/>
+        <Button Name="cancelButton" Content="Отменить" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Padding="5" FontSize="16" Click="CancelButtonClick" FontFamily="Comic Sans MS" Visibility="Hidden"/>
+        <Button Name="saveButton" Content="Сохранить" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="5" FontSize="16" Click="SaveButtonClick" FontFamily="Comic Sans MS" Visibility="Hidden"/>
+        <Button Name="savePurchaseButton" Content="Сохранить покупку" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="5" FontSize="16" Click="SavePurchaseButtonClick" FontFamily="Comic Sans MS"/>
+        <DataGrid Name="chekItemsDataGrid" Grid.ColumnSpan="3" Grid.Row="3" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="16" FontFamily="Comic Sans MS" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" LoadingRow="ChekItemsDataGridLoadingRow">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Индекс" Width="*"/>
                 <DataGridTextColumn Header="Категория" Binding="{Binding Path=GoodsItem.Category.Name}" Width="100" SortDirection="Ascending"/>
                 <DataGridTextColumn Header="Товар" Binding="{Binding Path=GoodsItem.Name}" FontSize="14" Width="*" SortDirection="Ascending"/>
                 <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat=F}" Width="0.7*" SortDirection="Ascending"/>
@@ -44,14 +43,14 @@
                 <DataGridTemplateColumn Header="Изменить" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="renameButton" Content="Изменить" Click="renameButtonClick"/>
+                            <Button Name="renameButton" Content="Изменить" Click="RenameButtonClick"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Удалить" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="removeButton" Content="Удалить" Click="removeButtonClick"/>
+                            <Button Name="removeButton" Content="Удалить" Click="RemoveButtonClick"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -16,14 +16,14 @@
             <RowDefinition Height="40*"/>
             <RowDefinition Height="280*"/>
         </Grid.RowDefinitions>
-        <DatePicker Name="purchaseDataTime" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="16" Margin="5" FontFamily="Comic Sans MS"/>
-        <ComboBox Name="purchaseCmbBox" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="16" Margin="5" FontFamily="Comic Sans MS">
+        <DatePicker Name="purchaseDataTime" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" FontSize="18" Margin="5,15,5,15" FontFamily="Comic Sans MS"/>
+        <ComboBox Name="purchaseCmbBox" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" FontSize="16" Margin="5,15,5,15" FontFamily="Comic Sans MS">
             <TextBlock Text="{Binding  Name}"/>
         </ComboBox>
-        <Button Name="addButton" Content="Добавить" Grid.Column="0" Grid.Row="1" Margin="100,0,5,0" FontSize="18" Padding="3" Click="addButton_Click" FontFamily="Comic Sans MS"/>
-        <Button Name="cancelButton" Content="Отменить" Grid.Column="0" Grid.Row="1" Margin="100,0,5,0" FontSize="18" Padding="3" Click="cancelButtonClick" FontFamily="Comic Sans MS" Visibility="Hidden"/>
-        <Button Name="saveBut" Content="Сохранить" Grid.Column="1" Grid.Row="1" Margin="5,0,100,0" FontSize="18" Padding="3" IsEnabled="False" Click="saveButClick" FontFamily="Comic Sans MS"/>
-        <DataGrid Name="purchaseDataGrid" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Stretch" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="14" FontFamily="Comic Sans MS">
+        <Button Name="addButton" Content="Добавить" Grid.Column="0" Grid.Row="1" Margin="100,0,5,0" FontSize="18" Padding="3" Click="AddButtonClick" FontFamily="Comic Sans MS"/>
+        <Button Name="cancelButton" Content="Отменить" Grid.Column="0" Grid.Row="1" Margin="100,0,5,0" FontSize="18" Padding="3" Click="CancelButtonClick" FontFamily="Comic Sans MS" Visibility="Hidden"/>
+        <Button Name="saveBut" Content="Сохранить" Grid.Column="1" Grid.Row="1" Margin="5,0,100,0" FontSize="18" Padding="3" IsEnabled="False" Click="SaveButClick" FontFamily="Comic Sans MS"/>
+        <DataGrid Name="purchaseDataGrid" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Stretch" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="14" FontFamily="Comic Sans MS" LoadingRow="PurchaseDataGridLoadingRow"> 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Дата" Binding="{Binding DateTime, StringFormat=dd MMM yyyy}" IsReadOnly="True" Width="*" SortDirection="Ascending"/>
@@ -31,21 +31,21 @@
                 <DataGridTemplateColumn Header="Редактировать" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="changeButton" Content="Редактировать" Click="changeButtonClick"/>
+                            <Button Name="changeButton" Content="Редактировать" Click="ChangeButtonClick"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Изменить позиции" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="renameButton" Content="Изменить" Click="renameButtonClick"/>
+                            <Button Name="renameButton" Content="Изменить" Click="RenameButtonClick"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Удалить" Width="*">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <Button Name="removeButton" Content="Удалить" Click="removeButtonClick"/>
+                        <Button Name="removeButton" Content="Удалить" Click="RemoveButtonClick"/>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

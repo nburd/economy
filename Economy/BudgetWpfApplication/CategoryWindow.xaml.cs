@@ -49,7 +49,7 @@ namespace BudgetWpfApplication
         #endregion
         #region Events Handlers
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        private void AddButtonClick(object sender, RoutedEventArgs e)
         {
             AddItemsWindow addItemsWindow = new AddItemsWindow();
             addItemsWindow.ShowDialog();

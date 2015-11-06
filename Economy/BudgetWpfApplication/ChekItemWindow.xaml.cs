@@ -77,10 +77,8 @@ namespace BudgetWpfApplication
             goodsLstBox.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
         }
 
-        private void UpdateDataGrid()
-        {
+        private void UpdateDataGrid() => 
             chekItemsDataGrid.ItemsSource = db.Purchases.Find(IdPurchase).ChekItems.ToList();
-        }
 
         private bool Check()
         {
@@ -118,7 +116,7 @@ namespace BudgetWpfApplication
 
         private void categoryCmbBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateListBox();
         
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        private void AddButtonClick(object sender, RoutedEventArgs e)
         {
             if (!Check()) return; 
             var chekItem = new ChekItem();
@@ -136,7 +134,7 @@ namespace BudgetWpfApplication
             UpdateDataGrid();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (isButtonPressed == true)
             {
@@ -148,7 +146,6 @@ namespace BudgetWpfApplication
                 var res = MessageBox.Show("Сохранить?", "Сохранение", MessageBoxButton.YesNoCancel);
                 if (res == MessageBoxResult.Yes)
                 {
-
                     db.SaveChanges();
                     db.Dispose();
                 }
@@ -157,7 +154,7 @@ namespace BudgetWpfApplication
             }
         }
 
-        private void renameButtonClick(object sender, RoutedEventArgs e)
+        private void RenameButtonClick(object sender, RoutedEventArgs e)
         {
             cancelButton.Visibility = Visibility.Visible;
             addButton.Visibility = Visibility.Hidden;
@@ -187,7 +184,7 @@ namespace BudgetWpfApplication
             quantityTxtBox.Text = chekItem.Quantity.ToString();
         }
 
-        private void removeButtonClick(object sender, RoutedEventArgs e)
+        private void RemoveButtonClick(object sender, RoutedEventArgs e)
         {
             var res = MessageBox.Show("Удалить?", "Удаление", MessageBoxButton.YesNo);
             if (res == MessageBoxResult.No) return;
@@ -198,7 +195,7 @@ namespace BudgetWpfApplication
 
         }
 
-        private void saveButtonClick(object sender, RoutedEventArgs e)
+        private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
             if (!Check()) return;
             ChekItem chekItem = chekItemsDataGrid.SelectedItem as ChekItem;
@@ -214,11 +211,11 @@ namespace BudgetWpfApplication
             chekItemsDataGrid.IsEnabled = true;
         }
 
-        private void priceTxtBoxGotFocus(object sender, RoutedEventArgs e) => priceTxtBox.SelectAll();
+        private void PriceTxtBoxGotFocus(object sender, RoutedEventArgs e) => priceTxtBox.SelectAll();
 
-        private void quantityTxtBoxGotFocus(object sender, RoutedEventArgs e) => quantityTxtBox.SelectAll();
+        private void QuantityTxtBoxGotFocus(object sender, RoutedEventArgs e) => quantityTxtBox.SelectAll();
 
-        private void cancelButtonClick(object sender, RoutedEventArgs e)
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             addButton.Visibility = Visibility.Visible;
             cancelButton.Visibility = Visibility.Hidden;
@@ -229,13 +226,15 @@ namespace BudgetWpfApplication
             quantityTxtBox.Clear();
         }
         
-        private void savePurchaseButtonClick(object sender, RoutedEventArgs e)
+        private void SavePurchaseButtonClick(object sender, RoutedEventArgs e)
         {
             isButtonPressed = true;
             Close();
         }
 
+        private void ChekItemsDataGridLoadingRow(object sender, DataGridRowEventArgs e)=> 
+            e.Row.Header = e.Row.GetIndex() + 1;
+
         #endregion
-        
     }
 }

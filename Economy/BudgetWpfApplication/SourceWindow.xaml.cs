@@ -51,7 +51,7 @@ namespace BudgetWpfApplication
         #endregion
         #region Events Handlers
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        private void AddButtonClick(object sender, RoutedEventArgs e)
         {
             AddItemsWindow addItemsWindow = new AddItemsWindow();
             addItemsWindow.ShowDialog();
@@ -69,7 +69,7 @@ namespace BudgetWpfApplication
             }
         }
 
-        private void renameMenuItemClick(object sender, RoutedEventArgs e)
+        private void RenameMenuItemClick(object sender, RoutedEventArgs e)
         {
             using (var db = new Model.BudgetModel())
             {
@@ -88,7 +88,7 @@ namespace BudgetWpfApplication
             }
         }
 
-        private void removeMenuItemClick(object sender, RoutedEventArgs e)
+        private void RemoveMenuItemClick(object sender, RoutedEventArgs e)
         {
             var res = MessageBox.Show("Удалить?", "Удаление", MessageBoxButton.YesNo);
             if (res == MessageBoxResult.Yes)

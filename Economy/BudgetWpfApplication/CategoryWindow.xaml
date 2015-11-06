@@ -26,6 +26,6 @@
             </ListBox.ContextMenu>
             <TextBlock Text="{Binding Name}"/>
         </ListBox>
-        <Button x:Name="addButton" Grid.Column="1" Grid.Row="2" Content="Добавить" Click="addButton_Click" Margin="100,5,0,10" FontFamily="Comic Sans MS" FontSize="14"/>
+        <Button x:Name="addButton" Grid.Column="1" Grid.Row="2" Content="Добавить" Click="AddButtonClick" Margin="100,5,0,10" FontFamily="Comic Sans MS" FontSize="14"/>
     </Grid>
 </Window>

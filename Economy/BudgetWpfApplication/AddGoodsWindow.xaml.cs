@@ -106,7 +106,7 @@ namespace BudgetWpfApplication
         #endregion
         #region Events Handlers
 
-        private void okButton_Click(object sender, RoutedEventArgs e)
+        private void OkButtonClick(object sender, RoutedEventArgs e)
         {
             Value = goodsTextBox.Text;
             Category = categoryCmbBox.SelectedItem as ListBoxItem;

@@ -24,6 +24,7 @@ namespace BudgetWpfApplication
         public AddItemsWindow()
         {
             InitializeComponent();
+            textBox.Focus();
         }
 
         public AddItemsWindow(string text)
@@ -35,7 +36,7 @@ namespace BudgetWpfApplication
             Value = textBox.Text;
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void ButtonClick(object sender, RoutedEventArgs e)
         {
             Value = textBox.Text;
             Close();
